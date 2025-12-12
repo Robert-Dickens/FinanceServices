@@ -1,0 +1,389 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Project Overview
+
+FinanceServices is a .NET 9.0 microservices-based financial services platform built using a modular monolith architecture. The solution follows Domain-Driven Design (DDD) principles with CQRS patterns and includes multi-tenancy support.
+
+## Build System
+
+The project uses **NUKE build** for build automation instead of traditional MSBuild targets.
+
+### Common Build Commands
+
+```bash
+# Build the solution
+bash build.sh Compile
+
+# Run tests
+bash build.sh Test
+
+# Create NuGet packages
+bash build.sh Pack
+
+# Publish artifacts
+bash build.sh Publish
+
+# Clean build artifacts
+bash build.sh Clean
+
+# Restore NuGet packages
+bash build.sh Restore
+
+# Restore client-side libraries (libman)
+bash build.sh LibManRestore
+
+# Create EF migrations (default target)
+bash build.sh CreateEfMigrations
+
+# Generate solution diagrams
+bash build.sh GenerateDiagram
+bash build.sh GenerateDocumentation
+```
+
+### Testing
+
+```bash
+# Run all tests
+bash build.sh Test
+
+# Run tests with filter
+bash build.sh Test --test-filters "FullyQualifiedName~UnitTest"
+```
+
+The test infrastructure includes:
+- **Unit tests**: `*.Tests` projects (Application, Domain, HttpApi)
+- **Integration tests**: `*.Domain.Context.Tests` projects
+- **Acceptance tests**: `*.Acceptance.Tests` projects (use Playwright for UI testing)
+
+## Architecture
+
+### Conceptual Architecture
+
+The solution follows a modular microservices architecture with clear separation of concerns:
+
+#### Modules (`/modules/{ModuleName}/`)
+**Modules represent domains of business value** - cohesive units that encapsulate specific business capabilities. Examples include:
+- **Accounting**: General ledger, chart of accounts, journal entries
+- **Payables**: Vendor management, invoice processing, payment handling
+- **Receivables**: Customer billing, invoice generation, payment collection
+
+Each module is a bounded context in DDD terms, with its own:
+- Domain model (entities, value objects, aggregates)
+- Application logic (use cases, CQRS handlers)
+- Data persistence (EF Core DbContext)
+- API controllers (optional, if exposed directly)
+
+Modules are designed to be independently deployable and can be consumed by services.
+
+#### Services (`/services/{ServiceName}/`)
+**Services represent business functional groups** that aggregate one or more modules into a cohesive service offering. A service:
+- Composes multiple modules to deliver business functionality
+- Follows the same DDD layered pattern as modules
+- Has a corresponding REST API host in `/hosts/{ServiceName}/`
+- May have associated client applications in `/apps/` or `/clients/`
+
+Examples:
+- **Administration**: Aggregates system admin, settings, and feature management modules
+- **Identity**: Aggregates user management and authentication modules
+- **Saas**: Aggregates tenant management and subscription modules
+- **FinanceServices**: Orchestrates Accounting, Payables, and Receivables modules
+
+#### Hosts (`/hosts/{ServiceName}/`)
+**Hosts are the HTTP API entry points** for services. Each service has a corresponding host project:
+- `hosts/Administration/HttpApi.Host/` - Exposes Administration service APIs
+- `hosts/Identity/HttpApi.Host/` - Exposes Identity service APIs
+- `hosts/FinanceServices/HttpApi.Host/` - Exposes FinanceServices APIs
+
+Hosts are ASP.NET Core applications that:
+- Bootstrap the service and its dependent modules
+- Configure middleware, authentication, and authorization
+- Expose REST endpoints via controllers
+- Are containerized for deployment
+
+#### Apps (`/apps/{AppName}/`)
+**Apps are client applications** that consume services through gateways:
+- **ManagementPortal**: Back-office application for administrators
+- **PublicFacing**: Public-facing customer portal
+- **TrustedPlatform**: Trusted platform services (e.g., AuthServer)
+
+Apps communicate with services via the API gateways, not directly with service hosts.
+
+#### Gateways (`/gateways/`)
+**Gateways aggregate and route requests** to backend services:
+- **Yarp Gateway**: YARP (Yet Another Reverse Proxy) based API gateway that routes HTTP requests to appropriate service hosts
+  - `WebGateway`: Routes for back-office/management portal
+  - `PublicWebGateway`: Routes for public-facing applications
+- **Aspire.AppHost**: .NET Aspire orchestrator for local development, service discovery, and testing
+
+#### Shared (`/shared/`)
+**Shared libraries** provide cross-cutting infrastructure:
+- Hosting configurations (ASP.NET Core, microservices, gateways)
+- Localization and settings management
+- Common abstractions and utilities
+
+### Module Structure (DDD Layers)
+
+Each module and service follows a consistent layered architecture pattern:
+
+```
+modules/{ModuleName}/ or services/{ServiceName}/
+├── src/
+│   ├── Domain.Abstractions/      # Domain interfaces and contracts
+│   ├── Domain/                   # Domain entities, value objects, domain services
+│   ├── Domain.Context/           # EF Core DbContext and entity configurations
+│   ├── Application.Abstractions/ # Application service interfaces and DTOs
+│   ├── Application/              # Application services, CQRS handlers
+│   ├── HttpApi/                  # REST API controllers
+│   ├── HttpApi.Client/           # Typed HTTP clients
+│   ├── Blazor/                   # Blazor UI components (optional)
+│   └── Web/                      # Web UI - MVC/Razor Pages (optional)
+└── test/
+    ├── TestBase/                 # Shared test infrastructure
+    ├── Domain.Tests/             # Domain unit tests
+    ├── Domain.Context.Tests/     # Database integration tests
+    ├── Application.Tests/        # Application service tests
+    ├── HttpApi.Tests/            # API integration tests
+    ├── Blazor.Tests/             # Blazor component tests
+    └── Acceptance.Tests/         # End-to-end tests (Playwright)
+```
+
+### Architecture Flow
+
+```
+[Apps]
+  ↓
+[Gateways] ← YARP routes requests
+  ↓
+[Hosts] ← Service entry points
+  ↓
+[Services] ← Aggregate modules
+  ↓
+[Modules] ← Business domain logic
+```
+
+**Example**: When a user performs an accounting operation in ManagementPortal:
+1. ManagementPortal (app) sends request to WebGateway
+2. WebGateway routes to FinanceServices HttpApi.Host
+3. Host delegates to FinanceServices service layer
+4. Service coordinates with Accounting module
+5. Accounting module processes business logic and persists data
+
+### Namespace Convention
+
+Projects use an automated namespace naming system defined in `buildprops/common.namespaces.props`:
+- Base namespace: `ByteLabs.FinanceServices`
+- Module namespace: `ByteLabs.FinanceServices.{ModuleName}`
+- Layer suffix auto-applied based on project name pattern
+
+Example: A project named `Accounting.Domain` in the Accounting module gets namespace `ByteLabs.FinanceServices.Accounting.Domain`
+
+### Database Support
+
+The solution supports multiple database providers:
+- **SQL Server**: `*.Domain.Context.SqlServer` projects
+- **PostgreSQL**: `*.Domain.Context.PostgreSql` projects
+
+EF Core migrations are managed per-module with the `CreateEfMigrations` build target.
+
+## UI/Frontend Technology Patterns
+
+The solution uses different UI frameworks and design systems depending on the platform and use case:
+
+### Web Applications (MVC Razor & Blazor Server/WASM)
+
+#### MVC Razor Pages
+When working with traditional MVC Razor pages (`.cshtml` files):
+- **CSS Framework**: Use **Tailwind CSS** for utility-first styling
+- **Component Library**: Use **Flowbite** for pre-built UI components and page blocks
+- Apply Tailwind utility classes directly in markup
+- Leverage Flowbite components for common UI patterns (forms, modals, dropdowns, navigation, etc.)
+
+Example structure:
+```html
+<!-- Use Tailwind utilities and Flowbite components -->
+<button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5">
+  Click me
+</button>
+```
+
+#### Blazor Pages (Server & WebAssembly)
+When working with Blazor pages (`.razor` files):
+- **Component Library**: Use **FluentUI Blazor** (Microsoft.Fast.Components.FluentUI)
+- Use FluentUI Blazor components for consistent Microsoft design language
+- Leverage built-in accessibility and responsive design patterns
+
+Example structure:
+```razor
+<!-- Use FluentUI Blazor components -->
+<FluentButton Appearance="Appearance.Accent" OnClick="HandleClick">
+    Click me
+</FluentButton>
+
+<FluentDataGrid Items="@items" Pagination="@pagination">
+    <PropertyColumn Property="@(p => p.Name)" />
+</FluentDataGrid>
+```
+
+### Cross-Platform Applications (Mobile & Desktop)
+
+For cross-platform mobile and desktop applications:
+- **Platform Framework**: Use **Uno Platform** with **WinUI** (Windows UI Library)
+- **Component Library**: Use **FluentUI** design system
+- Targets Windows, macOS, Linux, iOS, Android, and WebAssembly from a single codebase
+- Follow WinUI/UWP XAML patterns for UI definition
+- Integrate FluentUI design tokens and components for consistent look and feel
+
+Example structure:
+```xml
+<!-- Uno Platform WinUI XAML with FluentUI -->
+<Page
+    x:Class="MyApp.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <StackPanel Spacing="8">
+        <Button Style="{StaticResource AccentButtonStyle}">
+            Click me
+        </Button>
+    </StackPanel>
+</Page>
+```
+
+### Technology Selection Guide
+
+| Scenario | Framework | Styling/Components | Notes |
+|----------|-----------|-------------------|-------|
+| Server-rendered web pages | MVC Razor | Tailwind CSS + Flowbite | Use for SEO-critical pages, forms |
+| Interactive web components | Blazor Server | FluentUI Blazor | Use for rich, stateful dashboards |
+| Client-side web apps | Blazor WebAssembly | FluentUI Blazor | Use for offline-capable SPAs |
+| Mobile apps (iOS/Android) | Uno Platform WinUI | FluentUI | Single codebase for mobile |
+| Desktop apps (Win/Mac/Linux) | Uno Platform WinUI | FluentUI | Single codebase for desktop |
+| Hybrid (Web + Mobile/Desktop) | Uno Platform WinUI | FluentUI | Maximum code sharing |
+
+### Important Notes
+
+- **Consistency**: When working on Blazor pages, always use FluentUI Blazor components, not Tailwind/Flowbite
+- **Separation**: MVC Razor and Blazor are separate UI stacks - don't mix their styling approaches
+- **Uno Platform**: For apps requiring native mobile/desktop experiences, prefer Uno Platform with WinUI over Blazor WASM
+- **Component Reuse**: Blazor components can be shared between Blazor Server and WebAssembly projects, but not with MVC Razor
+
+## Development Workflow
+
+### Local Development
+
+1. **Prerequisites**:
+   - .NET 9.0 SDK (version 9.0.202 or compatible)
+   - Docker Desktop (for infrastructure dependencies)
+
+2. **Infrastructure Dependencies**:
+   - Redis (distributed cache)
+   - SQL Server or PostgreSQL (persistence)
+   - RabbitMQ (message bus)
+   - Elasticsearch (optional, for logging)
+
+   Start infrastructure using Docker Compose:
+   ```bash
+   cd etc/docker
+   docker-compose -f docker-compose.infrastructure.yml up -d
+   ```
+
+3. **Build and Run**:
+   ```bash
+   # Restore dependencies
+   bash build.sh Restore
+
+   # Build solution
+   bash build.sh Compile
+
+   # Run specific service (example)
+   cd hosts/FinanceServices/HttpApi.Host
+   dotnet run
+   ```
+
+### Working with Modules
+
+When creating or modifying modules:
+- Each module is a bounded context with its own domain model
+- Modules communicate via domain events (RabbitMQ) or HTTP APIs
+- Module dependencies are managed through `Directory.Build.props` inheritance
+- Always include both Abstractions and implementation projects to support modularity
+
+### Shared Projects
+
+The `shared/` directory contains reusable infrastructure:
+- `Shared.Hosting`: Base hosting configurations
+- `Shared.Hosting.AspNetCore`: ASP.NET Core hosting setup
+- `Shared.Hosting.Microservices`: Microservice-specific hosting
+- `Shared.Hosting.Gateways`: Gateway hosting configurations
+- `Shared.Hosting.Distributed`: Distributed system utilities
+- `Shared.Localization`: Localization resources
+- `Shared.Settings`: Shared settings and configuration
+
+## Deployment
+
+### Docker
+
+Each microservice has a Dockerfile in its host project directory.
+
+Build Docker images:
+```bash
+cd build
+./build-images-locally.ps1  # Faster, requires .NET SDK
+# OR
+./build-images.ps1          # CI/CD friendly, multi-stage builds
+```
+
+### Kubernetes
+
+Helm charts are located in `etc/k8s/FinanceServices/charts/`.
+
+See `etc/k8s/README.md` for detailed Kubernetes deployment instructions, including:
+- Setting up HTTPS with mkcert
+- Configuring ingress
+- Running the solution locally with Kubernetes
+
+### Aspire
+
+The solution includes .NET Aspire orchestration in `gateways/Aspire.AppHost/` for local development and testing.
+
+## Important Configuration Files
+
+- `Directory.Build.props`: Root MSBuild properties and artifact output configuration
+- `Directory.Build.targets`: Build targets and import configurations
+- `Directory.Packages.props`: Centralized package version management (CPM enabled)
+- `global.json`: .NET SDK version pinning
+- `GitVersion.yml`: Semantic versioning configuration
+- `buildprops/`: Centralized MSBuild properties for analyzers, styling, target frameworks, etc.
+
+### Artifacts Output
+
+The solution uses centralized artifact output (`UseArtifactsOutput=true`):
+- Build outputs: `buildartifacts/`
+- Published artifacts: `buildartifacts/published/`
+- NuGet packages: `buildartifacts/package/`
+
+## Code Quality
+
+### Analyzers
+
+The solution enforces code quality through:
+- StyleCop (configuration in `buildprops/stylecop.json`)
+- ReSharper analyzers (configured in build)
+- Code coverage reporting (with ReportGenerator)
+
+### Testing Standards
+
+- xUnit for test framework (configuration in `buildprops/xunit.runner.json`)
+- Code coverage with Coverlet
+- Acceptance tests use Playwright for browser automation
+- Test results and coverage reports generated in `buildartifacts/artifacts/`
+
+## Gateway Pattern
+
+The solution uses YARP (Yet Another Reverse Proxy) for API gateway functionality:
+- **WebGateway**: Backend/management portal gateway
+- **PublicWebGateway**: Public-facing API gateway
+
+Gateway configurations use environment variable overrides for service discovery in Docker/Kubernetes environments.
