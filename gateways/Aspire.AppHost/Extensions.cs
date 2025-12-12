@@ -1,5 +1,5 @@
 ﻿using Aspire.Hosting.Lifecycle;
-using FinanceServices.Shared;
+using ByteLabs.FinanceServices;
 
 namespace MyCompanyName.FinanceServices
 {

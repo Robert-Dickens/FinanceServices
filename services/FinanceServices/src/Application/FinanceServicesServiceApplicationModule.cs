@@ -1,3 +1,6 @@
+using ByteLabs.FinanceServices.Accounting;
+using ByteLabs.FinanceServices.Payables;
+using ByteLabs.FinanceServices.Recevables;
 using ByteLabs.FinanceServices.Services.FinanceServices.Domain;
 using ByteLabs.Foundations.Application;
 using ByteLabs.Foundations.AutoMapper;
@@ -9,7 +12,9 @@ namespace ByteLabs.FinanceServices.Services.FinanceServices;
 [DependsOn(
     typeof(FinanceServicesServiceDomainModule),
     typeof(FinanceServicesServiceApplicationAbstractionsModule),
-    typeof(PlatformApplicationModule),
+    typeof(AccountingApplicationModule),
+    typeof(PayablesApplicationModule),
+    typeof(RecevablesApplicationModule),
     typeof(AbpAutoMapperModule)
     )]
 public class FinanceServicesServiceApplicationModule : PlatformModule

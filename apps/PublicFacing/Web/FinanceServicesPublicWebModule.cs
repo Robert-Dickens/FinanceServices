@@ -1,4 +1,10 @@
 using ByteLabs.Aps.Hosting.MVC;
+using ByteLabs.FinanceServices;
+using ByteLabs.FinanceServices.Hosting.AspNetCore;
+using ByteLabs.FinanceServices.Localization;
+using ByteLabs.FinanceServices.Localization.Localization;
+using ByteLabs.FinanceServices.Services.Administration;
+using ByteLabs.FinanceServices.Services.FinanceServices;
 using ByteLabs.FinanceServices.Services.FinanceServices.Web;
 using ByteLabs.Foundations;
 using ByteLabs.Foundations.AspNetCore;
@@ -22,9 +28,6 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using FinanceServices.PublicServer.Web.Menus;
-using FinanceServices.Shared;
-using FinanceServices.Shared.Hosting.AspNetCore;
-using FinanceServices.Shared.Localization;
 using Prometheus;
 
 namespace FinanceServices.PublicServer.Web;

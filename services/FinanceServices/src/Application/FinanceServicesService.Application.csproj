@@ -11,6 +11,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\modules\Accounting\src\Application\Accounting.Application.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Payables\src\Application\Payables.Application.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Recevables\src\Application\Recevables.Application.csproj" />
 		<ProjectReference Include="..\Application.Abstractions\FinanceServicesService.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\Domain\FinanceServicesService.Domain.csproj" />
 	</ItemGroup>

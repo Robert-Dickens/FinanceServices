@@ -1,4 +1,5 @@
-﻿using ByteLabs.Foundations;
+﻿using ByteLabs.FinanceServices.Hosting.Microservices.DbMigrations.EfCore;
+using ByteLabs.Foundations;
 using ByteLabs.Foundations.Data;
 using ByteLabs.Foundations.DependencyInjection;
 using ByteLabs.Foundations.DistributedLocking;
@@ -10,9 +11,8 @@ using ByteLabs.Foundations.Uow;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using FinanceServices.Shared.Hosting.DbMigrations.EfCore;
 
-namespace FinanceServices.Shared.Hosting.DbMigrations;
+namespace ByteLabs.FinanceServices.Hosting.Microservices.DbMigrations;
 
 public abstract class DatabaseMigrationEventHandlerBase<TDbContext> : PendingEfCoreMigrationsChecker<TDbContext>, ITransientDependency
     where TDbContext : DbContext, IEfCoreDbContext

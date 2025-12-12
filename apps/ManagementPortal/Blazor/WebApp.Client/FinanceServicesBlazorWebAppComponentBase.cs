@@ -1,5 +1,5 @@
-﻿using ByteLabs.Foundations.AspNetCore.Components;
-using FinanceServices.Shared.Localization;
+﻿using ByteLabs.FinanceServices.Localization.Localization;
+using ByteLabs.Foundations.AspNetCore.Components;
 
 namespace FinanceServices.ManagementPortal.Blazor.WebAssembly;
 

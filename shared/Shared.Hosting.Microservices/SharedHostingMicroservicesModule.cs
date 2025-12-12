@@ -1,13 +1,14 @@
 using ByteLabs.Aps.Hosting.Microservices;
+using ByteLabs.FinanceServices.Hosting.AspNetCore;
+using ByteLabs.FinanceServices.Hosting.Distributed;
 using ByteLabs.FinanceServices.Services.Administration.Domain.Context.PostgreSql;
 using ByteLabs.FinanceServices.Services.Saas.Domain.Context.PostgreSql;
 using ByteLabs.Foundations.Modularity;
 using ByteLabs.Foundations.Security.OpenTrust.Options;
 using ByteLabs.Foundations.Swashbuckle;
 using Microsoft.Extensions.DependencyInjection;
-using FinanceServices.Shared.Hosting.AspNetCore;
 
-namespace FinanceServices.Shared.Hosting;
+namespace ByteLabs.FinanceServices.Hosting.Microservices;
 
 [DependsOn(typeof(AspNetCoreHostingModule), typeof(DistributedServicesHostingModule), typeof(PlatformHostingMicroservicesModule))]
 [DependsOn(typeof(SaasPostgreSqlDomainContextModule), typeof(AdministrationPostgreSqlDomainContextModule))]

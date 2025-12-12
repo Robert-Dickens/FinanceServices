@@ -1,6 +1,6 @@
-﻿using ByteLabs.Foundations.AspNetCore.UI.Branding;
+﻿using ByteLabs.FinanceServices;
+using ByteLabs.Foundations.AspNetCore.UI.Branding;
 using ByteLabs.Foundations.DependencyInjection;
-using FinanceServices.Shared;
 
 namespace FinanceServices.ManagementPortal.Blazor.WebAssembly;
 

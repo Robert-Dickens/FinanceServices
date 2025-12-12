@@ -13,7 +13,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\services\Administration\src\HttpApi.Client\AdministrationService.HttpApi.Client.csproj" />
 		<ProjectReference Include="..\..\..\services\FinanceServices\src\Web\FinanceServicesService.Web.csproj" />
-		<ProjectReference Include="..\..\..\shared\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\..\..\shared\Shared.Hosting.AspNetCore\Shared.Hosting.AspNetCore.csproj" />
 		<ProjectReference Include="..\..\..\shared\Shared.Localization\Shared.Localization.csproj" />
 		<ProjectReference Include="..\..\..\services\FinanceServices\src\HttpApi.Client\FinanceServicesService.HttpApi.Client.csproj" />
 	</ItemGroup>

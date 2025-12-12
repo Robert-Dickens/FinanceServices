@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace FinanceServices.Shared.Hosting.DbMigrations.EfCore;
+namespace ByteLabs.FinanceServices.Hosting.Microservices.DbMigrations.EfCore;
 
 public abstract class PendingEfCoreMigrationsChecker<TDbContext> : PendingMigrationsCheckerBase where TDbContext : DbContext, IEfCoreDbContext
 {

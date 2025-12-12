@@ -1,4 +1,8 @@
-﻿using ByteLabs.FinanceServices.Services.Administration;
+﻿using ByteLabs.FinanceServices;
+using ByteLabs.FinanceServices.Hosting.Microservices;
+using ByteLabs.FinanceServices.Localization;
+using ByteLabs.FinanceServices.Services.Administration;
+using ByteLabs.FinanceServices.Services.Identity;
 using ByteLabs.FinanceServices.Services.Identity.Domain.Context.PostgreSql;
 using ByteLabs.FinanceServices.Services.Identity.Web;
 using IdentityServer4.Extensions;
@@ -15,8 +19,6 @@ using ByteLabs.PlatformServices.SaaS.Permissions;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using FinanceServices.Shared;
-using FinanceServices.Shared.Hosting;
 using Prometheus;
 using ByteLabs.Foundations.Auditing;
 using ByteLabs.Foundations.AspNetCore.UI.Bundling;

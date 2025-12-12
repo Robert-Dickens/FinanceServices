@@ -1,5 +1,3 @@
-using FinanceServices.Shared;
-
 namespace ByteLabs.FinanceServices.Services.Administration;
 
 public static class AdministrationServiceRemoteServiceConsts

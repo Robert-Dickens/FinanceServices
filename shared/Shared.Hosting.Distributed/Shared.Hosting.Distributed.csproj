@@ -5,8 +5,9 @@
 		<IsPackable>false</IsPackable>
 		<ProductFeatureGroup>Shared</ProductFeatureGroup>
 		<ModuleNamespace>Hosting</ModuleNamespace>
-		<RootNamespace>FinanceServices.Shared.Hosting.Distributed</RootNamespace>
-	</PropertyGroup>
+        <RootNamespace>ByteLabs.FinanceServices.Hosting.Distributed</RootNamespace>
+
+    </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Aspire.RabbitMQ.Client" />
@@ -20,8 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
-	  <ProjectReference Include="..\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+	  <ProjectReference Include="..\Shared.Hosting.AspNetCore\Shared.Hosting.AspNetCore.csproj" />
+	  <ProjectReference Include="..\Shared.Settings\Shared.Settings.csproj" />
 	</ItemGroup>
 
 </Project>

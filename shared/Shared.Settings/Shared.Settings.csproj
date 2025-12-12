@@ -5,6 +5,7 @@
 		<IsPackable>false</IsPackable>
 		<IsAspireSharedProject>true</IsAspireSharedProject>
 		<ProductFeatureGroup>Shared</ProductFeatureGroup>
-	</PropertyGroup>
+        <RootNamespace>ByteLabs.FinanceServices</RootNamespace>
+    </PropertyGroup>
 
 </Project>

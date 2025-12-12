@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\..\..\..\shared\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+		<ProjectReference Include="..\..\..\..\shared\Shared.Settings\Shared.Settings.csproj" />
 	</ItemGroup>
 
 	

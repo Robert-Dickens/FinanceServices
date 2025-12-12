@@ -8,7 +8,7 @@ using Microsoft.ApplicationInsights.DependencyCollector;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace FinanceServices.Shared.Hosting.AspNetCore;
+namespace ByteLabs.FinanceServices.Hosting.AspNetCore;
 
 [DependsOn(
     typeof(SharedHostingModule),

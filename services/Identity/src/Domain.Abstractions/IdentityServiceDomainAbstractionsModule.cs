@@ -5,7 +5,6 @@ using ByteLabs.Foundations.Validation.Localization;
 using ByteLabs.Foundations.VirtualFileSystem;
 using ByteLabs.PlatformServices.Identity.Domain;
 using ByteLabs.PlatformServices.Security.IdentityServer;
-using FinanceServices.Shared;
 
 namespace ByteLabs.FinanceServices.Services.Identity;
 

@@ -2,7 +2,7 @@
 using ByteLabs.Foundations.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace FinanceServices.Shared.Hosting.DbMigrations;
+namespace ByteLabs.FinanceServices.Hosting.Microservices.DbMigrations;
 
 public abstract class PendingMigrationsCheckerBase : ITransientDependency
 {

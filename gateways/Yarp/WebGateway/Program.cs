@@ -1,5 +1,5 @@
 using ByteLabs.Aps.Hosting.Gateways;
-using FinanceServices.Shared;
+using ByteLabs.FinanceServices;
 using Serilog;
 
 namespace FinanceServices.WebGateway.Yarp;

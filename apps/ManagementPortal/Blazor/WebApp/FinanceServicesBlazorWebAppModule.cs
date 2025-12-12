@@ -1,5 +1,15 @@
 ﻿using ByteLabs.Aps.Hosting.Blazor;
+using ByteLabs.FinanceServices;
+using ByteLabs.FinanceServices.Hosting.AspNetCore;
+using ByteLabs.FinanceServices.Localization;
+using ByteLabs.FinanceServices.Localization.Localization;
+using ByteLabs.FinanceServices.Services.Administration;
 using ByteLabs.FinanceServices.Services.Administration.Blazor;
+using ByteLabs.FinanceServices.Services.FinanceServices;
+using ByteLabs.FinanceServices.Services.FinanceServices.Blazor;
+using ByteLabs.FinanceServices.Services.Identity;
+using ByteLabs.FinanceServices.Services.Identity.Blazor;
+using ByteLabs.FinanceServices.Services.Saas;
 using ByteLabs.FinanceServices.Services.Saas.Blazor;
 using ByteLabs.Foundations;
 using ByteLabs.Foundations.AspNetCore;
@@ -33,9 +43,6 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using FinanceServices.ManagementPortal.Blazor.Menus;
 using FinanceServices.ManagementPortal.Blazor.WebAssembly;
 using FinanceServices.ManagementPortal.Blazor.WebAssembly.Menus;
-using FinanceServices.Shared;
-using FinanceServices.Shared.Hosting.AspNetCore;
-using FinanceServices.Shared.Localization;
 using Prometheus;
 
 namespace FinanceServices.ManagementPortal.Blazor;

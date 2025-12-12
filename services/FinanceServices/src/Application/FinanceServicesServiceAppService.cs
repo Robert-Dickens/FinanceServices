@@ -1,3 +1,4 @@
+using ByteLabs.FinanceServices.Services.FinanceServices.Localization;
 using ByteLabs.Foundations.Application.Services;
 
 namespace ByteLabs.FinanceServices.Services.FinanceServices;

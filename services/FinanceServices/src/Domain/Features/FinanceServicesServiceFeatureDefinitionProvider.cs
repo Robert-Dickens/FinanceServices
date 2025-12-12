@@ -1,4 +1,5 @@
 using ByteLabs.FinanceServices.Services.FinanceServices.Domain.GlobalFeatures;
+using ByteLabs.FinanceServices.Services.FinanceServices.Localization;
 using ByteLabs.Foundations.Features;
 using ByteLabs.Foundations.GlobalFeatures;
 using ByteLabs.Foundations.Localization;

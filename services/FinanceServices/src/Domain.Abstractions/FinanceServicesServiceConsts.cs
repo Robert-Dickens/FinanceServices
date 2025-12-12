@@ -2,5 +2,5 @@ namespace ByteLabs.FinanceServices.Services.FinanceServices;
 
 public static class FinanceServicesServiceConsts
 {
-    public const string ModuleName = global::FinanceServices.Shared.GlobalConstants.Services.FinanceServicesServiceName;
+    public const string ModuleName = GlobalConstants.Services.FinanceServicesServiceName;
 }

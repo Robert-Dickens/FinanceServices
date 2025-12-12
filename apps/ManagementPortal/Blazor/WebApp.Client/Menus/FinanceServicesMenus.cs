@@ -1,4 +1,4 @@
-﻿using FinanceServices.Shared;
+﻿using ByteLabs.FinanceServices;
 
 namespace FinanceServices.ManagementPortal.Blazor.WebAssembly.Menus;
 

@@ -1,4 +1,4 @@
-﻿namespace FinanceServices.Shared
+﻿namespace ByteLabs.FinanceServices
 {
     public class GlobalConstants
     {

@@ -1,3 +1,7 @@
+using ByteLabs.FinanceServices.Accounting.Web;
+using ByteLabs.FinanceServices.Payables.Web;
+using ByteLabs.FinanceServices.Recevables.Web;
+using ByteLabs.FinanceServices.Services.FinanceServices.Localization;
 using ByteLabs.FinanceServices.Services.FinanceServices.Permissions;
 using ByteLabs.FinanceServices.Services.FinanceServices.Web.Menus;
 using ByteLabs.Foundations.AspNetCore.Mvc.Localization;
@@ -14,7 +18,10 @@ namespace ByteLabs.FinanceServices.Services.FinanceServices.Web;
     typeof(FinanceServicesServiceApplicationAbstractionsModule),
     typeof(AspNetCoreMvcUiThemeSharedModule),
     typeof(AbpAutoMapperModule),
-    typeof(FinanceServicesServiceHttpApiModule)
+    typeof(FinanceServicesServiceHttpApiModule),
+    typeof(AccountingWebModule),
+    typeof(PayablesWebModule),
+    typeof(RecevablesWebModule)
     )]
 public class FinanceServicesServiceWebModule : PlatformModule
 {

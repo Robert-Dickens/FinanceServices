@@ -1,11 +1,11 @@
+using ByteLabs.FinanceServices.Localization.Localization;
 using ByteLabs.Foundations.Localization;
 using ByteLabs.Foundations.Modularity;
 using ByteLabs.Foundations.Validation;
 using ByteLabs.Foundations.Validation.Localization;
 using ByteLabs.Foundations.VirtualFileSystem;
-using FinanceServices.Shared.Localization;
 
-namespace FinanceServices.Shared;
+namespace ByteLabs.FinanceServices.Localization;
 
 [DependsOn(
     typeof(ValidationModule)

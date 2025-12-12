@@ -1,3 +1,6 @@
+using ByteLabs.FinanceServices.Accounting.Domain;
+using ByteLabs.FinanceServices.Payables.Domain;
+using ByteLabs.FinanceServices.Recevables.Domain;
 using ByteLabs.FinanceServices.Services.FinanceServices.Domain.Context;
 using ByteLabs.Foundations;
 using ByteLabs.Foundations.Data;
@@ -10,7 +13,10 @@ namespace ByteLabs.FinanceServices.Services.FinanceServices.Domain;
 
 [DependsOn(
     typeof(EntityFrameworkCoreModule),
-    typeof(FinanceServicesServiceDomainModule)
+    typeof(FinanceServicesServiceDomainModule),
+    typeof(AccountingDomainContextModule),
+    typeof(PayablesDomainContextModule),
+    typeof(RecevablesDomainContextModule)
 )]
 public class FinanceServicesServiceDomainContextModule : PlatformModule
 {

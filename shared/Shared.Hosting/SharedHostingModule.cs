@@ -4,7 +4,7 @@ using ByteLabs.Foundations.Modularity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace FinanceServices.Shared.Hosting;
+namespace ByteLabs.FinanceServices.Hosting;
 
 [DependsOn(
     typeof(PlatformHostingModule)

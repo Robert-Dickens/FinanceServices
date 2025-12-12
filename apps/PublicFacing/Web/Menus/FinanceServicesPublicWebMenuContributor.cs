@@ -1,8 +1,8 @@
+using ByteLabs.FinanceServices.Localization.Localization;
 using ByteLabs.Foundations.AspNetCore.UI.Localization;
 using ByteLabs.Foundations.AspNetCore.UI.Navigation;
 using ByteLabs.Foundations.Authorization.Permissions;
 using ByteLabs.PlatformServices.Account.Localization;
-using FinanceServices.Shared.Localization;
 
 namespace FinanceServices.PublicServer.Web.Menus;
 

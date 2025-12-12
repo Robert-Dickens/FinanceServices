@@ -17,6 +17,9 @@
 
 	
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\modules\Accounting\src\Blazor\Accounting.Blazor.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Payables\src\Blazor\Payables.Blazor.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Recevables\src\Blazor\Recevables.Blazor.csproj" />
 		<ProjectReference Include="..\Application.Abstractions\FinanceServicesService.Application.Abstractions.csproj" />
 	</ItemGroup>
 </Project>

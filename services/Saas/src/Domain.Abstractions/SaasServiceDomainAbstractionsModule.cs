@@ -4,7 +4,6 @@ using ByteLabs.Foundations.Modularity;
 using ByteLabs.Foundations.Validation.Localization;
 using ByteLabs.Foundations.VirtualFileSystem;
 using ByteLabs.PlatformServices.SaaS;
-using FinanceServices.Shared;
 
 namespace ByteLabs.FinanceServices.Services.Saas;
 

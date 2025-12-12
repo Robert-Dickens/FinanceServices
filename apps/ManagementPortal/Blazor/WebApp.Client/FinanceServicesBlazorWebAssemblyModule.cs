@@ -1,5 +1,8 @@
-﻿using ByteLabs.FinanceServices.Services.Administration.Blazor;
+﻿using ByteLabs.FinanceServices.Localization;
+using ByteLabs.FinanceServices.Services.Administration.Blazor;
 using ByteLabs.FinanceServices.Services.FinanceServices.Blazor;
+using ByteLabs.FinanceServices.Services.Identity.Blazor;
+using ByteLabs.FinanceServices.Services.Saas.Blazor;
 using ByteLabs.Foundations.AspNetCore.Components.Web;
 using ByteLabs.Foundations.AspNetCore.Components.WebAssembly;
 using ByteLabs.Foundations.AspNetCore.Components.WebAssembly.Theming;
@@ -10,7 +13,6 @@ using ByteLabs.Foundations.AutoMapper;
 using ByteLabs.Foundations.Modularity;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using FinanceServices.ManagementPortal.Blazor.WebAssembly.Menus;
-using FinanceServices.Shared;
 using ByteLabs.Foundations.Autofac.WebAssembly;
 using ByteLabs.Foundations.AspNetCore.Components.Web.Routing;
 

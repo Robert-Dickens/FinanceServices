@@ -12,6 +12,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\modules\Accounting\src\Domain.Context\Accounting.Domain.Context.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Payables\src\Domain.Context\Payables.Domain.Context.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Recevables\src\Domain.Context\Recevables.Domain.Context.csproj" />
 		<ProjectReference Include="..\Domain\FinanceServicesService.Domain.csproj" />
 	</ItemGroup>
 

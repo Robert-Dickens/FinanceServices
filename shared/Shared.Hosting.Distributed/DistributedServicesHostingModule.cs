@@ -1,12 +1,12 @@
 using ByteLabs.Aps.Hosting.Distributed;
+using ByteLabs.FinanceServices.Hosting.AspNetCore;
 using ByteLabs.Foundations.BackgroundServices.BackgroundJobs.RabbitMQ;
 using ByteLabs.Foundations.DistributedSystems.CAP;
 using ByteLabs.Foundations.DistributedSystems.CAP.RabbitMQ;
 using ByteLabs.Foundations.Modularity;
 using ByteLabs.Foundations.RabbitMQ;
-using FinanceServices.Shared.Hosting.AspNetCore;
 
-namespace FinanceServices.Shared.Hosting;
+namespace ByteLabs.FinanceServices.Hosting.Distributed;
 
 [DependsOn(
     typeof(PlatformEventBusCapRabbitMqModule),

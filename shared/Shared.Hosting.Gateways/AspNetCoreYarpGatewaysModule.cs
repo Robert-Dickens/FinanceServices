@@ -1,8 +1,8 @@
 ﻿using ByteLabs.Aps.Hosting.Gateways;
+using ByteLabs.FinanceServices.Hosting.AspNetCore;
 using ByteLabs.Foundations.Modularity;
-using FinanceServices.Shared.Hosting.AspNetCore;
 
-namespace FinanceServices.Shared.Hosting.Gateways;
+namespace ByteLabs.FinanceServices.Hosting.Gateways;
 
 [DependsOn(
     typeof(AspNetCoreHostingModule),

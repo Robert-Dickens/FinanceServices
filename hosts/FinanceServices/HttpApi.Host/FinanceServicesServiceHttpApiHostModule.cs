@@ -1,13 +1,15 @@
+using ByteLabs.FinanceServices.Hosting.Microservices;
 using ByteLabs.FinanceServices.Services.FinanceServices;
 using ByteLabs.FinanceServices.Services.FinanceServices.Domain.Context.PostgreSql;
 using ByteLabs.Foundations;
+using ByteLabs.Foundations.AspNetCore;
 using ByteLabs.Foundations.Modularity;
 using Prometheus;
 
 
 namespace FinanceServices.Services.FinanceServicesService;
 
-[DependsOn(typeof(FinanceServices.Shared.Hosting.SharedHostingMicroservicesModule))]
+[DependsOn(typeof(SharedHostingMicroservicesModule))]
 [DependsOn(
     typeof(FinanceServicesServiceApplicationModule),
     typeof(FinanceServicesServiceHttpApiModule)

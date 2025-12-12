@@ -1,4 +1,7 @@
-﻿using ByteLabs.FinanceServices.Services.FinanceServices.Blazor.Menus;
+﻿using ByteLabs.FinanceServices.Accounting.Blazor;
+using ByteLabs.FinanceServices.Payables.Blazor;
+using ByteLabs.FinanceServices.Recevables.Blazor;
+using ByteLabs.FinanceServices.Services.FinanceServices.Blazor.Menus;
 using ByteLabs.Foundations.AspNetCore.Components.Web;
 using ByteLabs.Foundations.AspNetCore.Components.Web.Routing;
 using ByteLabs.Foundations.AspNetCore.UI.Navigation;
@@ -11,6 +14,9 @@ namespace ByteLabs.FinanceServices.Services.FinanceServices.Blazor;
 [DependsOn(
     typeof(FinanceServicesServiceApplicationAbstractionsModule),
     typeof(AspNetCoreComponentsWebThemingModule),
+    typeof(AccountingBlazorModule),
+    typeof(PayablesBlazorModule),
+    typeof(RecevablesBlazorModule),
     typeof(AbpAutoMapperModule)
     )]
 public class FinanceServicesServiceBlazorModule : PlatformModule

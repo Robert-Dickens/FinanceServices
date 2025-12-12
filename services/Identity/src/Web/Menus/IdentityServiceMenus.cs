@@ -1,5 +1,3 @@
-using FinanceServices.Shared;
-
 namespace ByteLabs.FinanceServices.Services.Identity.Web.Menus;
 
 public class IdentityServiceMenus

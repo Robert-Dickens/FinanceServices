@@ -1,3 +1,4 @@
+using ByteLabs.FinanceServices.Hosting;
 using ByteLabs.FinanceServices.Services.Administration;
 using ByteLabs.FinanceServices.Services.Administration.Domain.Context.PostgreSql;
 using ByteLabs.FinanceServices.Services.FinanceServices;
@@ -8,7 +9,6 @@ using ByteLabs.FinanceServices.Services.Identity.Domain.Context.PostgreSql;
 using ByteLabs.FinanceServices.Services.Saas;
 using ByteLabs.FinanceServices.Services.Saas.Domain.Context.PostgreSql;
 using ByteLabs.Foundations.Modularity;
-using FinanceServices.Shared.Hosting;
 
 
 namespace DbMigrator;

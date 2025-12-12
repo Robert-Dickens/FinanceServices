@@ -5,15 +5,16 @@
 		<IsPackable>false</IsPackable>
 		<ProductFeatureGroup>Shared</ProductFeatureGroup>
 		<ModuleNamespace>Hosting.Gateways</ModuleNamespace>
-		<RootNamespace>FinanceServices.Shared.Hosting.Gateways</RootNamespace>
-	</PropertyGroup>
+        <RootNamespace>ByteLabs.FinanceServices.Hosting.Gateways</RootNamespace>
+
+    </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ByteLabs.Aps.Hosting.Gateways" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\Shared.Hosting.AspNetCore\Shared.Hosting.AspNetCore.csproj" />
 	</ItemGroup>
 
 </Project>

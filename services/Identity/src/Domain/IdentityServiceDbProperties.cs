@@ -1,5 +1,3 @@
-using FinanceServices.Shared;
-
 namespace ByteLabs.FinanceServices.Services.Identity.Domain;
 
 public static class IdentityServiceDbProperties

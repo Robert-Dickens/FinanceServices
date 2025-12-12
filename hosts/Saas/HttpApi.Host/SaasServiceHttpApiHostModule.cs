@@ -1,7 +1,9 @@
+using ByteLabs.FinanceServices.Hosting.Microservices;
+using ByteLabs.FinanceServices.Services.Saas;
 using ByteLabs.FinanceServices.Services.Saas.Domain;
+using ByteLabs.FinanceServices.Services.Saas.Domain.Context.PostgreSql;
 using ByteLabs.Foundations;
 using ByteLabs.Foundations.Modularity;
-using FinanceServices.Shared.Hosting;
 using Prometheus;
 using ByteLabs.Foundations.AspNetCore;
 

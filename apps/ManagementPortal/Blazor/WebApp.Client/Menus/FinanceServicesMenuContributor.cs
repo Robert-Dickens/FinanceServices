@@ -1,6 +1,6 @@
+using ByteLabs.FinanceServices.Localization.Localization;
 using ByteLabs.Foundations.AspNetCore.UI.Navigation;
 using ByteLabs.Foundations.Authorization.Permissions;
-using FinanceServices.Shared.Localization;
 
 namespace FinanceServices.ManagementPortal.Blazor.WebAssembly.Menus;
 

@@ -5,8 +5,9 @@
 		<IsPackable>false</IsPackable>
 		<IsAspireSharedProject>true</IsAspireSharedProject>
 		<ProductFeatureGroup>Shared</ProductFeatureGroup>
-		<ModuleNamespace>Hosting.AspNetCore</ModuleNamespace>
-	</PropertyGroup>
+        <RootNamespace>ByteLabs.FinanceServices.Hosting.AspNetCore</RootNamespace>
+
+    </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" />

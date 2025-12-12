@@ -1,6 +1,4 @@
-﻿using FinanceServices.Shared;
-
-namespace ByteLabs.FinanceServices.Services.Saas.Blazor.Menus;
+﻿namespace ByteLabs.FinanceServices.Services.Saas.Blazor.Menus;
 
 public class SaasServiceMenus
 {

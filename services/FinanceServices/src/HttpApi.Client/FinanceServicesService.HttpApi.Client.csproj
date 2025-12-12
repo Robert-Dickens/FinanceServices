@@ -6,6 +6,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\modules\Accounting\src\HttpApi.Client\Accounting.HttpApi.Client.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Payables\src\HttpApi.Client\Payables.HttpApi.Client.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Recevables\src\HttpApi.Client\Recevables.HttpApi.Client.csproj" />
 		<ProjectReference Include="..\Application.Abstractions\FinanceServicesService.Application.Abstractions.csproj" />
 	</ItemGroup>
 

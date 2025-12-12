@@ -1,6 +1,4 @@
-﻿using FinanceServices.Shared;
-
-namespace ByteLabs.FinanceServices.Services.Identity.Blazor.Menus;
+﻿namespace ByteLabs.FinanceServices.Services.Identity.Blazor.Menus;
 
 public class IdentityServiceMenus
 {

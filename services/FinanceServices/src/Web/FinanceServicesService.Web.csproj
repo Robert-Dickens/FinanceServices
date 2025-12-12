@@ -11,6 +11,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\..\..\..\modules\Accounting\src\Web\Accounting.Web.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Payables\src\Web\Payables.Web.csproj" />
+		<ProjectReference Include="..\..\..\..\modules\Recevables\src\Web\Recevables.Web.csproj" />
 		<ProjectReference Include="..\Application.Abstractions\FinanceServicesService.Application.Abstractions.csproj" />
 		<ProjectReference Include="..\HttpApi\FinanceServicesService.HttpApi.csproj" />
 	</ItemGroup>

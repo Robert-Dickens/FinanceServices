@@ -1,5 +1,3 @@
-using FinanceServices.Shared;
-
 namespace ByteLabs.FinanceServices.Services.Saas.Domain;
 
 public static class SaasServiceDbProperties

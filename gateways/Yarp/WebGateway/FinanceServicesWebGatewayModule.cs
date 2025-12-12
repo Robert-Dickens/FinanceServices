@@ -1,12 +1,12 @@
 ﻿using ByteLabs.Aps.Hosting.Gateways.Yarp;
+using ByteLabs.FinanceServices;
+using ByteLabs.FinanceServices.Hosting.Gateways;
 using ByteLabs.Foundations;
 using ByteLabs.Foundations.AspNetCore;
 using ByteLabs.Foundations.Modularity;
 using ByteLabs.Foundations.Swashbuckle;
 using ByteLabs.Foundations.Threading;
 using Microsoft.AspNetCore.Rewrite;
-using FinanceServices.Shared;
-using FinanceServices.Shared.Hosting.Gateways;
 
 namespace FinanceServices.WebGateway.Yarp;
 

@@ -5,8 +5,8 @@
 		<IsPackable>false</IsPackable>
 		<ProductFeatureGroup>Shared</ProductFeatureGroup>
 		<ModuleNamespace>Hosting</ModuleNamespace>
-		<RootNamespace>FinanceServices.Shared.Hosting.Microservices</RootNamespace>
-	</PropertyGroup>
+        <RootNamespace>ByteLabs.FinanceServices.Hosting.Microservices</RootNamespace>
+    </PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="ByteLabs.Aps.Hosting.Microservices" />

@@ -1,4 +1,4 @@
-using FinanceServices.Shared;
+using ByteLabs.FinanceServices;
 using Serilog;
 
 namespace FinanceServices.ManagementPortal.Web;

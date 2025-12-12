@@ -44,9 +44,9 @@
 	  <ProjectReference Include="..\..\..\..\services\FinanceServices\src\Blazor.Server\FinanceServicesService.Blazor.Server.csproj" />
 	  <ProjectReference Include="..\..\..\..\services\Saas\src\Blazor.Server\SaasService.Blazor.Server.csproj" />
 	  <ProjectReference Include="..\..\..\..\services\Saas\src\HttpApi.Client\SaasService.HttpApi.Client.csproj" />
-	  <ProjectReference Include="..\..\..\..\shared\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+	  <ProjectReference Include="..\..\..\..\shared\Shared.Hosting.AspNetCore\Shared.Hosting.AspNetCore.csproj" />
 	  <ProjectReference Include="..\..\..\..\shared\Shared.Localization\Shared.Localization.csproj" />
-	  <ProjectReference Include="..\..\..\..\shared\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+	  <ProjectReference Include="..\..\..\..\shared\Shared.Settings\Shared.Settings.csproj" />
 	  <ProjectReference Include="..\WebApp.Client\ManagementPortal.Blazor.Client.csproj" />
 	</ItemGroup>
 

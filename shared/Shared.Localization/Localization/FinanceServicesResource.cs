@@ -1,6 +1,6 @@
 using ByteLabs.Foundations.Localization;
 
-namespace FinanceServices.Shared.Localization;
+namespace ByteLabs.FinanceServices.Localization.Localization;
 
 [LocalizationResourceName(GlobalConstants.Modules.FinanceServices)]
 public class FinanceServicesResource

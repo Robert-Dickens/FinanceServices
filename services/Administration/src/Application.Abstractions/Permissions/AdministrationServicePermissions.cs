@@ -1,5 +1,3 @@
-using FinanceServices.Shared;
-
 namespace ByteLabs.FinanceServices.Services.Administration.Permissions;
 
 public static class AdministrationServicePermissions

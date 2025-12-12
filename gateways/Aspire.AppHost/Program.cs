@@ -1,5 +1,5 @@
+using ByteLabs.FinanceServices;
 using MyCompanyName.FinanceServices;
-using FinanceServices.Shared;
 
 const string AppPrefix = "FinanceServices";
 

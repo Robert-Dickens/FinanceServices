@@ -1,5 +1,6 @@
+using ByteLabs.FinanceServices;
+using ByteLabs.FinanceServices.Services.Administration.Domain.Context;
 using ByteLabs.FinanceServices.Services.Saas.Domain.Context;
-using FinanceServices.Shared;
 using Serilog;
 
 namespace FinanceServices.Services.AdministrationService;
