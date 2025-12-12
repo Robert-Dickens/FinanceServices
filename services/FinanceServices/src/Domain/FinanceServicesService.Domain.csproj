@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+        <RootNamespace>$(RootNamespace).Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.Ddd.Domain" />
+		<PackageReference Include="ByteLabs.PlatformServices.AuditLogging.Domain" />
+		<PackageReference Include="ByteLabs.Foundations.Features" />
+		<PackageReference Include="ByteLabs.Foundations.GlobalFeatures" />
+	</ItemGroup>
+	
+
+	<ItemGroup>
+		<ProjectReference Include="..\Domain.Abstractions\FinanceServicesService.Domain.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

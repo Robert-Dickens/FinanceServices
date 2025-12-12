@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<IsPackable>false</IsPackable>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <RootNamespace>$(RootNamespace).Web</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\Payables.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.AutoMapper" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Mvc.UI.Theme.Shared" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Pages\**\*.css" />
+		<EmbeddedResource Include="Pages\**\*.js" />
+		<EmbeddedResource Include="Components\**\*.js" />
+		<EmbeddedResource Include="Components\**\*.css" />
+		<EmbeddedResource Include="wwwroot\**\*.*" />
+		<Content Remove="Pages\**\*.css" />
+		<Content Remove="Pages\**\*.js" />
+		<Content Remove="Components\**\*.js" />
+		<Content Remove="Components\**\*.css" />
+		<Content Remove="wwwroot\**\*.*" />
+	</ItemGroup>
+
+</Project>

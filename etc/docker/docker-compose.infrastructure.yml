@@ -1,0 +1,67 @@
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:management-alpine
+    healthcheck:
+        test: rabbitmq-diagnostics -q ping
+        interval: 30s
+        timeout: 30s
+        retries: 3
+    networks:
+      - apsapp.microservice-network
+      
+  redis:
+    container_name: redis
+    image: redis:alpine
+    healthcheck:
+      test: ["CMD", "redis-cli","ping"]
+    networks:
+      - apsapp.microservice-network
+      
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.10.2
+    volumes:
+      - esdata:/usr/share/elasticsearch/data
+    networks:
+      - apsapp.microservice-network
+      
+  kibana:
+    container_name: kibana
+    image: docker.elastic.co/kibana/kibana:7.10.2
+    depends_on:
+      - elasticsearch
+    networks:
+      - apsapp.microservice-network
+    
+  sql-server-db:
+    container_name: sql-server-db
+    image: mcr.microsoft.com/mssql/server
+    volumes:
+      - sqldata:/var/opt/mssql
+    networks:
+      - apsapp.microservice-network
+ 
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+    volumes:
+      - ../grafana/storage:/var/lib/grafana
+    networks:
+      - apsapp.microservice-network
+      
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+    volumes:
+      - ../prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ../prometheus/storage:/prometheus
+    networks:
+      - apsapp.microservice-network
+      
+volumes:
+  esdata:
+  sqldata:
+networks:
+  apsapp.microservice-network:
+    external: true

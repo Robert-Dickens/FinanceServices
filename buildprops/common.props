@@ -1,0 +1,107 @@
+<Project>
+	<Import Project="$(MSBuildThisFileDirectory)/configureawait.props" />
+
+	<PropertyGroup>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<LangVersion>latest</LangVersion>
+		<NoWarn>$(NoWarn);1591;Nullable;CS1591;CS0436;NU1900;CS0618;MSB3277;CS8618;CS1573</NoWarn>
+		<WarningsAsErrors>$(WarningsAsErrors);NU1506;NU1602;NU1604;NU1504;NU1605;NU1603;CS0108</WarningsAsErrors>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<!-- Include symbol files (*.pdb) in the built .nupkg -->
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(ContinuousIntegrationBuild)' == '' OR '$(ContinuousIntegrationBuild)' == 'false' ">
+		<MinVerAutoIncrement>minor</MinVerAutoIncrement>
+		<DefineConstants>$(DefineConstants);GENERATE_STRUCTURE</DefineConstants>
+	</PropertyGroup>
+	
+	<PropertyGroup Condition=" '$(ContinuousIntegrationBuild)' == 'true' ">
+		<DisableGitVersionTask>true</DisableGitVersionTask>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+	</PropertyGroup>
+
+	<!--<ItemGroup>
+		<PackageReference Include="GitVersion.MsBuild" PrivateAssets="all"  />
+	</ItemGroup>-->
+
+	<ItemGroup Condition=" '$(GenerateEmbeddedFilesManifest)' == 'true' ">
+		<PackageReference Include="Microsoft.Extensions.FileProviders.Embedded"  />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<TargetOsName Condition=" '$(TargetOsName)' == '' AND $([MSBuild]::IsOSPlatform('Windows'))">win</TargetOsName>
+		<TargetOsName Condition=" '$(TargetOsName)' == '' AND $([MSBuild]::IsOSPlatform('OSX'))">osx</TargetOsName>
+		<TargetOsName Condition=" '$(TargetOsName)' == '' AND $([MSBuild]::IsOSPlatform('Linux'))">linux</TargetOsName>
+		<TargetOsName Condition=" '$(TargetOsName)' == '' AND $([MSBuild]::IsOSPlatform('FreeBSD'))">freebsd</TargetOsName>
+		<TargetArchitecture Condition="'$(TargetArchitecture)' == ''">x64</TargetArchitecture>
+		<TargetRuntimeIdentifier Condition="'$(TargetRuntimeIdentifier)' == ''">$(TargetOsName)-$(TargetArchitecture)</TargetRuntimeIdentifier>
+		<PortableBuild Condition="'$(PortableBuild)' == ''">true</PortableBuild>
+		<DefaultAppHostRuntimeIdentifier Condition=" '$(DotNetBuildSourceOnly)' == 'true' ">$(TargetRuntimeIdentifier)</DefaultAppHostRuntimeIdentifier>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(BuildAllProjects)' == 'true' ">
+		<BuildNative Condition=" '$(MSBuildRuntimeType)' == 'Core' ">false</BuildNative>
+		<BuildNative Condition=" '$(TargetOsName)' != 'win' ">false</BuildNative>
+		<BuildNative Condition=" '$(VCTargetsPath)' == '' ">false</BuildNative>
+		<BuildNative Condition=" '$(BuildNative)' == '' ">true</BuildNative>
+
+		<BuildManaged Condition="'$(BuildManaged)' == ''">true</BuildManaged>
+		<BuildNodeJS Condition="'$(BuildNodeJS)' == ''">true</BuildNodeJS>
+		<BuildJava Condition="'$(BuildJava)' == ''">true</BuildJava>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<BuildNative Condition=" '$(BuildNative)' == '' ">false</BuildNative>
+	</PropertyGroup>
+
+
+	<ItemGroup Condition="'$(UsingMicrosoftNETSdkWeb)' != 'true' AND '$(UsingMicrosoftNETSdkRazor)' != 'true'">
+		<None Remove="*.abppkg.analyze.json" />
+		<Content Include="*.abppkg.analyze.json">
+			<Pack>true</Pack>
+			<PackagePath>content\</PackagePath>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Remove="*.abppkg" />
+		<Content Include="*.abppkg">
+			<Pack>true</Pack>
+			<PackagePath>content\</PackagePath>
+		</Content>
+	</ItemGroup>
+
+	<ItemGroup>
+		<!--<Content Include="$($(MSBuildThisFileDirectory)../docs/specs/$(MSBuildProjectName)/*.md" Pack="true" PackagePath="content\"/>-->
+		<Content Remove="$(UserProfile)\.nuget\packages\*\*\contentFiles\any\*\*.abppkg*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Compile Remove="Logs\**" />
+		<Content Remove="Logs\**" />
+		<EmbeddedResource Remove="Logs\**" />
+		<None Remove="Logs\**" />
+	</ItemGroup>
+
+	<Target Name="NoWarnOnRazorViewImportedTypeConflicts" BeforeTargets="RazorCoreCompile">
+		<PropertyGroup>
+			<NoWarn>$(NoWarn);0436</NoWarn>
+		</PropertyGroup>
+	</Target>
+
+
+	<ItemGroup Condition="$(AssemblyName.EndsWith('HttpApi.Client'))">
+		<EmbeddedResource Include="**\*generate-proxy.json" />
+		<Content Remove="**\*generate-proxy.json" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Include="Localization\**\*.json" />
+		<Content Remove="Localization\**\*.json" />
+	</ItemGroup>
+
+</Project>

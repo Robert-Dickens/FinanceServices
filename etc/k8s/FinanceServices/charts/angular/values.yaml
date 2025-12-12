@@ -1,0 +1,17 @@
+config:
+    selfUrl: #
+    gatewayUrl: #
+    authServer:
+        authority: # http://financeservices-st-authserver
+        requireHttpsMetadata: # "false"
+
+ingress:
+    host: # financeservices-st-angular
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-app-angular
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

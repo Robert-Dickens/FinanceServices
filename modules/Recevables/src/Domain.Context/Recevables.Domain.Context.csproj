@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+        <RootNamespace>$(RootNamespace).Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.DataFactory.EntityFrameworkCore" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\Recevables.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

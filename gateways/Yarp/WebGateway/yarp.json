@@ -1,0 +1,120 @@
+{
+  "Yarp": {
+    "Routes": {
+      "FallBack Api Service": {
+        "ClusterId": "FinanceServicesService",
+        "Match": {
+          "Path": "{**catchall}"
+        }
+      },
+      "Core Api Service": {
+        "ClusterId": "AdministrationService",
+        "Match": {
+          "Path": "/api/app/{**catch-all}"
+        }
+      },
+      "Administration Service Swagger": {
+        "ClusterId": "AdministrationService",
+        "Match": {
+          "Path": "/swagger-json/AdministrationService/swagger/v1/swagger.json"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/swagger-json/AdministrationService" }
+        ]
+      },
+      "Saas Service Swagger": {
+        "ClusterId": "SaasService",
+        "Match": {
+          "Path": "/swagger-json/SaasService/swagger/v1/swagger.json"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/swagger-json/SaasService" }
+        ]
+      },
+      "Account Service Swagger": {
+        "ClusterId": "TokenAccountService",
+        "Match": {
+          "Path": "/swagger-json/AccountService/swagger/v1/swagger.json"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/swagger-json/AccountService" }
+        ]
+      },
+      "Identity Service Swagger": {
+        "ClusterId": "IdentityService",
+        "Match": {
+          "Path": "/swagger-json/IdentityService/swagger/v1/swagger.json"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/swagger-json/IdentityService" }
+        ]
+      },
+      "FinanceServicesService Swagger": {
+        "ClusterId": "FinanceServicesService",
+        "Match": {
+          "Path": "/swagger-json/FinanceServicesService/swagger/v1/swagger.json"
+        },
+        "Transforms": [
+          { "PathRemovePrefix": "/swagger-json/FinanceServicesService" }
+        ]
+      }
+    },
+    "Clusters": {
+      "AdministrationService": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://AdministrationService",
+            "MetaData": {
+              "PublicAddress": "https://AdministrationService.domain.com",
+              "SwaggerAddress": "https://localhost:5366"
+            }
+          }
+        }
+      },
+      "IdentityService": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://IdentityService",
+            "MetaData": {
+              "PublicAddress": "https://IdentityService.domain.com",
+              "SwaggerAddress": "https://localhost:5380"
+            }
+          }
+        }
+      },
+      "TokenAccountService": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://IdentitySts",
+            "MetaData": {
+              "PublicAddress": "https://IdentitySts.domain.com",
+              "SwaggerAddress": "https://localhost:5757"
+            }
+          }
+        }
+      },
+      "SaasService": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://SaasService",
+            "MetaData": {
+              "PublicAddress": "https://SaasService.domain.com",
+              "SwaggerAddress": "https://localhost:5497"
+            }
+          }
+        }
+      },
+      "FinanceServicesService": {
+        "Destinations": {
+          "destination1": {
+            "Address": "https://FinanceServicesService",
+            "MetaData": {
+              "PublicAddress": "https://FinanceServicesService.domain.com",
+              "SwaggerAddress": "https://localhost:5634"
+            }
+          }
+        }
+      }
+    }
+  }
+}

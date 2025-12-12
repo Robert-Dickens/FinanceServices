@@ -1,0 +1,175 @@
+﻿@using System.Globalization
+@using ByteLabs.Foundations.AspNetCore.Blazor.Bundling
+@using ByteLabs.Foundations.AspNetCore.Components.Web.Security
+@using ByteLabs.Foundations.AspNetCore.Components.WebAssembly.WebApp
+@using ByteLabs.Foundations.AspNetCore.UI.Branding
+@using ByteLabs.Foundations.AspNetCore.Web
+@using ByteLabs.Foundations.AspNetCore.Web.Bundling
+@using ByteLabs.Foundations.Localization
+@using ByteLabs.Foundations.Users
+@using ByteLabs.Foundations.Http.Client.Authentication
+@using ByteLabs.Foundations.AspNetCore.Web.Themes.FluentDesignTheme
+@using Microsoft.Extensions.Hosting
+@using Microsoft.Extensions.Options
+@using FinanceServices.ManagementPortal.Blazor.WebAssembly
+
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IBrandingProvider BrandingProvider
+
+@inject IHostEnvironment Env
+
+@{
+    var rtl = CultureHelper.IsRtl ? "rtl" : "ltr";
+}
+
+<!DOCTYPE html>
+<html lang="@CultureInfo.CurrentCulture.Name" dir="@rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@BrandingProvider.AppName</title>
+
+    <base href="/" />
+
+    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/Microsoft.FluentUI.AspNetCore.Components.lib.module.js" type="module" async></script>
+
+    <StyleBundles BundleName="@BlazorFluentDesignThemeBundles.Styles.Global" WebAssemblyStyleFiles="GlobalStyles" />
+    <script src="_content/Microsoft.FluentUI.AspNetCore.Components/js/loading-theme.js" type="text/javascript"></script>
+
+    <HeadOutlet @rendermode="@PageRenderMode" />
+</head>
+<body class="application-layout @rtl">
+    <FluentDesignTheme @bind-Mode="@ThemeOptions.Value.DefaultThemeMode" @bind-OfficeColor="@OfficeColor" StorageName="theme" />
+
+    <loading-theme storage-name="theme" random-color="true"></loading-theme>
+
+    <Routes @rendermode="@PageRenderMode" />
+
+    <div id="blazor-error-ui">
+        @if (Env.IsDevelopment())
+        {
+            <text>An unhandled exception has occurred. See browser dev tools for details.</text>
+        }
+        else if (Env.IsStaging() || Env.IsProduction())
+        {
+            <text>An error has occurred. This application may no longer respond until reloaded.</text>
+        }
+        <a href="" class="reload">Reload</a>
+        <a class="dismiss">🗙</a>
+    </div>
+
+        <ScriptBundles BundleName="@BlazorFluentDesignThemeBundles.Scripts.Global" WebAssemblyScriptFiles="GlobalScripts" />
+
+</body>
+</html>
+
+@code {
+
+
+   private List<string> GlobalStyles =>
+    [
+        "global-styles.css",
+        "blazor-global-styles.css"
+    ];
+
+    private List<string> GlobalScripts =>
+    [
+    ];
+
+    private string? Token { get; set; } = default!;
+
+    private IComponentRenderMode? PageRenderMode =>
+    // account/* must be handled by the server
+    HttpContext.Request.Path.StartsWithSegments("/Account")
+    ? new InteractiveServerRenderMode()
+    : (HttpContext.AcceptsInteractiveRouting()
+        ? GetDefaultRenderMode()
+        : null);
+
+    [CascadingParameter]
+    private HttpContext HttpContext { get; set; } = default!;
+
+    [Inject] protected IOptions<FluentDesignThemeOptions> ThemeOptions { get; set; }
+
+    [Inject] protected IOptions<BlazorRenderModeOptions> BlazorRendorModeOptions { get; set; }
+
+    [Inject]
+    private PersistentComponentState PersistentComponentState { get; set; }
+
+    [Inject]
+    private IPrincipalAccessTokenProvider TokenProvider { get; set; }
+
+    [Inject]
+    private ICurrentUser CurrentUser { get; set; }
+
+    public OfficeColor? OfficeColor
+    {
+        get
+        {
+            return ThemeOptions.Value.DefaultColor;
+        }
+        set
+        {
+            if (value.HasValue)
+                ThemeOptions.Value.DefaultColor = value.Value;
+        }
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (CurrentUser.IsAuthenticated)
+            Token = await TokenProvider.GetTokenAsync();
+
+        PersistentComponentState.RegisterOnPersisting(OnPersistingAsync, RenderMode.InteractiveWebAssembly);
+    }
+
+    async Task OnPersistingAsync()
+    {
+        if (!string.IsNullOrEmpty(Token))
+        {
+            PersistentComponentState.PersistAsJson(PersistentAccessToken.Key, new PersistentAccessToken { AccessToken = Token });
+        }
+
+        await Task.CompletedTask;
+    }
+
+
+
+    protected IComponentRenderMode GetDefaultRenderMode()
+    {
+        var renderMode = HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "RenderMode");
+        var prerenderStr = HttpContext.Request.Cookies.FirstOrDefault(x => x.Key == "Prerender");
+        var prerender = prerenderStr.Value.IsNullOrEmpty() || bool.TryParse(prerenderStr.Value, out var result) && result;
+
+        bool isWebAssemblyEnabled = BlazorRendorModeOptions.Value.SupportedRenderingModes.HasFlag(SupportedRenderingModes.InteractiveWebAssembly);
+
+
+        if (renderMode.Value == "InteractiveAutoRenderMode" && isWebAssemblyEnabled)
+        {
+            return new InteractiveAutoRenderMode(prerender);
+        }
+
+        if (renderMode.Value == "InteractiveServerRenderMode")
+        {
+            return new InteractiveServerRenderMode(prerender);
+        }
+
+        if (renderMode.Value == "InteractiveWebAssemblyRenderMode" && isWebAssemblyEnabled)
+        {
+            return new InteractiveWebAssemblyRenderMode(prerender);
+        }
+
+
+      if (BlazorRendorModeOptions.Value.DefaultRenderMode is not null)
+        {
+            return BlazorRendorModeOptions.Value.DefaultRenderMode!;
+        }
+
+        if (isWebAssemblyEnabled)
+        {
+            return new InteractiveAutoRenderMode(prerender);
+        }
+        return new InteractiveServerRenderMode(prerender);
+    }
+}

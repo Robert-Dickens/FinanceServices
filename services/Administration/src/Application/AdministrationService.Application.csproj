@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Platform.Foundations.Application"  />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\AdministrationService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\Domain\AdministrationService.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

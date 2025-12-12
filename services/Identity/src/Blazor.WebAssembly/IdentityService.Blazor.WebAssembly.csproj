@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <RootNamespace>$(RootNamespace).Blazor</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Identity.Blazor.WebAssembly" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.WebAssembly.Theming" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Blazor\IdentityService.Blazor.csproj" />
+		<ProjectReference Include="..\HttpApi.Client\IdentityService.HttpApi.Client.csproj" />
+	</ItemGroup>
+
+</Project>

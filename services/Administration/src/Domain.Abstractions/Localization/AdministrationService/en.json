@@ -1,0 +1,10 @@
+{
+  "culture": "en",
+  "texts": {
+    "ServiceName": "Administration",
+    "Menu:ServiceMenuGroup": "Manage FinanceServices",
+    "Menu:Settings": "Settings",
+    "Permission:Dashboard": "Dashboard",
+    "Permission:Settings": "Settings"
+  }
+}

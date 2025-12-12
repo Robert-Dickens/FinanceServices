@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\IdentityService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Security.IdentityServer.HttpApi" />
+		<PackageReference Include="ByteLabs.PlatformServices.Identity.HttpApi" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Public.HttpApi" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Admin.HttpApi" />
+	</ItemGroup>
+
+</Project>

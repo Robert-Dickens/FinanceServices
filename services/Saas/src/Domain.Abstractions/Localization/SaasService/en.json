@@ -1,0 +1,10 @@
+{
+  "culture": "en",
+  "texts": {
+    "ServiceName": "SaasService",
+    "Menu:ServiceMenuGroup": "Manage SaaS Services",
+    "Menu:Settings": "Settings",
+    "Permission:Settings": "Settings"
+
+  }
+}

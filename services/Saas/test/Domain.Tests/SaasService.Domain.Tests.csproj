@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<UseXunit>true</UseXunit>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
+
+	<ItemGroup>
+    <ProjectReference Include="..\Domain.Context.Tests\SaasService.Domain.Context.Tests.csproj" />
+  </ItemGroup>
+
+</Project>

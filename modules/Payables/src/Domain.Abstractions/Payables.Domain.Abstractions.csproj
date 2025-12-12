@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.Ddd.Domain.Abstractions" />
+		<PackageReference Include="ByteLabs.Foundations.Validation" />
+	</ItemGroup>
+
+
+	
+</Project>

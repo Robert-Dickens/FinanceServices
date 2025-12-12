@@ -1,0 +1,35 @@
+<Project>
+
+	<PropertyGroup>
+		<Authors>ByteLabs InfoWorks Inc.</Authors>
+		<PackageTags>C#</PackageTags>
+		<Company>ByteLabs InfoWorks Inc.</Company>
+		<Copyright>@ $(Company) $([System.DateTime]::Now.ToString('yyyy'))</Copyright>
+		<Product>ByteLabs Enterprise Platform</Product>
+
+		<AssemblyCopyright>$(Copyright)</AssemblyCopyright>
+		<AssemblyProductPrefix>ByteLabs</AssemblyProductPrefix>
+		<AssemblyProductProductName>FinanceServices</AssemblyProductProductName>
+
+		<AbpProjectType Condition=" $(MSBuildProjectDirectoryNoRoot.ToLower().Contains('modules')) OR $(MSBuildProjectDirectoryNoRoot.ToLower().Contains('features'))">module</AbpProjectType>
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<_AssemblyPrefix Condition="'$(AssemblyPrefixName)' != '' ">$(AssemblyPrefixName)</_AssemblyPrefix>
+		<_AssemblyPrefix Condition="'$(ProductGroup)' != '' ">$(AssemblyProductPrefix).$(ProductGroup)</_AssemblyPrefix>
+
+		<_AssemblyPrefix Condition="'$(_AssemblyPrefix)' == '' ">$(AssemblyProductPrefix).$(AssemblyProductProductName)</_AssemblyPrefix>
+
+		<_AssemblyPrefix Condition="'$(ProductName)' != '' ">$(_AssemblyPrefix).$(ProductName)</_AssemblyPrefix>
+
+		<_AssemblyPrefix Condition="'$(ProductFeatureGroup)' != '' AND $(MSBuildProjectName.StartsWith($(ProductFeatureGroup))) == false" >$(_AssemblyPrefix).$(ProductFeatureGroup)</_AssemblyPrefix>
+
+
+		<GeneratedAssemblyName>$(_AssemblyPrefix).$(MSBuildProjectName)</GeneratedAssemblyName>
+
+		<AssemblyName Condition=" '$(AssemblyName)' == '' OR '$(AssemblyName)' == '$(MSBuildProjectName)' " >$(GeneratedAssemblyName)</AssemblyName>
+	</PropertyGroup>
+
+
+</Project>

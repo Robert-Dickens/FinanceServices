@@ -1,0 +1,302 @@
+services:
+  lb:
+    image: nginx:1.21
+    container_name: load-balancer-container
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./nginx/certs/aps-app-web+10.pem:/etc/nginx/certs/app-cert.pem:ro
+      - ./nginx/certs/aps-app-web+10-key.pem:/etc/nginx/certs/app-cert-key.pem:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    depends_on:
+      - aps-app-administration
+      - aps-app-authserver
+      - aps-app-identity
+      - aps-app-saas
+      - aps-app-financeservices
+      - aps-app-web
+      - aps-app-public-web
+      - aps-app-gateway-web-public
+      - aps-app-gateway-web
+    restart: on-failure
+    networks:
+      - apsapp.microservice-network
+
+  aps-app-administration:
+    image: eshoponabp/service-administration:latest
+    container_name: administration-service-container
+    build:
+      context: ../../
+      dockerfile: hosts/Administration/HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80
+      - App__SelfUrl=https://aps-app-administration
+      - App__CorsOrigins=https://gateway-web,gateway-web-public
+      - RemoteServices__AbpIdentity__BaseUrl=aps-app-identity
+      - RemoteServices__AbpIdentity__UseCurrentAccessToken=false
+      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Administration;Pooling=false;
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - IdentityClients__Default__Authority=http://aps-app-identity
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+    depends_on:
+      redis:
+        condition: service_healthy
+      sql-server-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure
+    networks: 
+      - apsapp.microservice-network
+ 
+  aps-app-identity:
+    image: eshoponabp/service-identity:latest
+    container_name: identity-service-container
+    build:
+      context: ../../
+      dockerfile: hosts/Identity/HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80
+      - App__SelfUrl=https://aps-app-identity
+      - App__CorsOrigins=https://gateway-web,gateway-web-public
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - ConnectionStrings__IdentityService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Identity;Pooling=false;
+      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Administration;Pooling=false;
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - IdentityServerClients__Web__RootUrl=https://aps-app-web
+      - IdentityServerClients__PublicWeb__RootUrl=https://aps-app-public-web
+      - IdentityServerClients__WebGateway__RootUrl=https://aps-app-gateway-web
+      - IdentityServerClients__PublicWebGateway__RootUrl=https://aps-app-gateway-web-public
+      - IdentityServerClients__IdentityService__RootUrl=https://aps-app-identity
+      - IdentityServerClients__AdministrationService__RootUrl=https://aps-app-administration
+      - IdentityServerClients__AccountService__RootUrl=https://aps-app-authserver
+      - IdentityServerClients__CatalogService__RootUrl=https://aps-app-saas
+      - IdentityServerClients__BasketService__RootUrl=https://aps-app-basket     
+      - IdentityServerClients__OrderingService__RootUrl=https://aps-app-financeservices
+      - IdentityServerClients__CmskitService__RootUrl=https://aps-app-cmskit
+      - IdentityServerClients__PaymentService__RootUrl=https://aps-app-payment
+    depends_on:
+      redis:
+        condition: service_healthy
+      sql-server-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure
+    networks: 
+      - apsapp.microservice-network
+ 
+
+  aps-app-saas:
+    image: eshoponabp/service-saas:latest
+    container_name: saas-service-container
+    build:
+      context: ../../
+      dockerfile: hosts/Saas/HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;http://+:81;
+      - App__SelfUrl=https://aps-app-saas
+      - App__CorsOrigins=https://aps-app-gateway-web,https://aps-app-gateway-web-public,https://aps-app-public-web,https://aps-app-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - Kestrel__EndPoints__Http__Url=http://docker.host.internal:80
+      - Kestrel__EndPoints__gRPC__Url=http://docker.host.internal:81
+      - Kestrel__EndPoints__gRPC__Protocols=Http2
+      - ConnectionStrings__CatalogService=mongodb://mongodb/EShopOnAbp_Catalog
+      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Administration;Pooling=false;
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+    depends_on:
+      redis:
+        condition: service_healthy
+      sql-server-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-financeservices:
+    image: eshoponabp/service-financeservices:latest
+    container_name: financeservices-service-container
+    build:
+      context: ../../
+      dockerfile: hosts/FinanceServices/HttpApi.Host/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;http://+:81;
+      - App__SelfUrl=https://aps-app-financeservices
+      - App__CorsOrigins=https://aps-app-gateway-web,https://aps-app-gateway-web-public,https://aps-app-public-web,https://aps-app-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - Kestrel__EndPoints__Http__Url=http://docker.host.internal:80
+      - Kestrel__EndPoints__gRPC__Url=http://docker.host.internal:81
+      - Kestrel__EndPoints__gRPC__Protocols=Http2
+      - ConnectionStrings__CatalogService=mongodb://mongodb/EShopOnAbp_Catalog
+      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Administration;Pooling=false;
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+    depends_on:
+      redis:
+        condition: service_healthy
+      sql-server-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-authserver:
+    image: eshoponabp/app-authserver:latest
+    container_name: app-authserver-container
+    build:
+      context: ../../
+      dockerfile: apps/TrustedPlatform/AuthServer.Web/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://aps-app-authserver
+      - App__CorsOrigins=https://aps-app-web,https://aps-app-public-web,https://aps-app-identity,http://aps-app-administration,https://aps-app-administration,https://aps-app-saas,https://aps-app-basket,https://aps-app-financeservices,https://aps-app-cmskit,https://aps-app-payment
+      - App__RedirectAllowedUrls=http://aps-app-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - ConnectionStrings__IdentityService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Identity;Pooling=false;
+      - ConnectionStrings__AdministrationService=User ID=postgres;Password=myPassw0rd;Host=postgres-db;Port=5432;Database=EShopOnAbp_Administration;Pooling=false;   
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+    depends_on:
+      redis:
+        condition: service_healthy
+      sql-server-db:
+        condition: service_healthy  
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-web:
+    image: eshoponabp/app-web:latest
+    container_name: app-web-container
+    build:
+      context: ../../
+      dockerfile: apps/ManagementPortal/Web/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://aps-app-public-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - RemoteServices__Default__BaseUrl=http://aps-app-gateway-web/                
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - ReverseProxy__Clusters__cluster1__Destinations__destination1__Address=http://aps-app-gateway-web
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-public-web:
+    image: eshoponabp/app-publicweb:latest
+    container_name: app-publicweb-container
+    build:
+      context: ../../
+      dockerfile: apps/PublicFacing/Web/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://aps-app-public-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - RemoteServices__Default__BaseUrl=http://aps-app-gateway-web-public/                
+      - Redis__Configuration=redis
+      - RabbitMQ__Connections__Default__HostName=rabbitmq
+      - ReverseProxy__Clusters__cluster1__Destinations__destination1__Address=http://aps-app-gateway-web-public
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-gateway-web:
+    image: eshoponabp/gateway-web:latest
+    container_name: gateway-web-container
+    build:
+      context: ../../
+      dockerfile: gateways/Yarp/WebGateway/Dockerfile
+    environment:
+      #- ASPNETCORE_ENVIRONMENT=Docker # Yarp can't resolve dns, needs to be overridden
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://aps-app-gateway-web
+      - App__CorsOrigins=https://aps-app-web
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - Redis__Configuration=redis
+      - ReverseProxy__Clusters__accountCluster__Destinations__destination1__Address=http://aps-app-authserver
+      - ReverseProxy__Clusters__identityCluster__Destinations__destination1__Address=http://aps-app-identity
+      - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://aps-app-administration
+      - ReverseProxy__Clusters__catalogCluster__Destinations__destination1__Address=http://aps-app-saas
+      - ReverseProxy__Clusters__orderingCluster__Destinations__destination1__Address=http://aps-app-financeservices
+      - ReverseProxy__Clusters__cmskitCluster__Destinations__destination1__Address=http://aps-app-cmskit
+      - ReverseProxy__Clusters__feature-management-cluster__Destinations__destination1__Address=http://aps-app-administration
+      - ReverseProxy__Clusters__permission-management-cluster__Destinations__destination1__Address=http://aps-app-administration
+      - ReverseProxy__Clusters__setting-management-cluster__Destinations__destination1__Address=http://aps-app-administration
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+  aps-app-gateway-web-public:
+    image: eshoponabp/gateway-web-public:latest
+    container_name: gateway-web-public-container
+    build:
+      context: ../../
+      dockerfile: gateways/Yarp/PublicWebGateway/Dockerfile
+    environment:
+      # - ASPNETCORE_ENVIRONMENT=Docker # Yarp can't resolve dns, needs to be overridden
+      - ASPNETCORE_URLS=http://+:80;
+      - App__SelfUrl=https://aps-app-gateway-web-public
+      - AuthServer__Authority=http://aps-app-authserver
+      - AuthServer__RequireHttpsMetadata=false
+      - Redis__Configuration=redis
+      - ReverseProxy__Clusters__accountCluster__Destinations__destination1__Address=http://aps-app-authserver
+      - ReverseProxy__Clusters__administrationCluster__Destinations__destination1__Address=http://aps-app-administration
+      - ReverseProxy__Clusters__catalogCluster__Destinations__destination1__Address=http://aps-app-saas
+      - ReverseProxy__Clusters__basketCluster__Destinations__destination1__Address=http://aps-app-basket
+      - ReverseProxy__Clusters__orderingCluster__Destinations__destination1__Address=http://aps-app-financeservices
+      - ReverseProxy__Clusters__cmskitCluster__Destinations__destination1__Address=http://aps-app-cmskit
+      - ReverseProxy__Clusters__paymentCluster__Destinations__destination1__Address=http://aps-app-payment
+      - ReverseProxy__Clusters__productPictureCluster__Destinations__destination1__Address=http://aps-app-saas
+    depends_on:
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    restart: on-failure  
+    networks: 
+      - apsapp.microservice-network
+
+networks:
+  apsapp.microservice-network:
+    external: true

@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.Ddd.Application" />
+		<PackageReference Include="ByteLabs.Foundations.AutoMapper" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\Payables.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\Domain\Payables.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

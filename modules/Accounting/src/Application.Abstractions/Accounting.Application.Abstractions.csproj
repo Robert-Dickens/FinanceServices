@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.Ddd.Application.Abstractions" />
+		<PackageReference Include="ByteLabs.Foundations.Authorization" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Domain.Abstractions\Accounting.Domain.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

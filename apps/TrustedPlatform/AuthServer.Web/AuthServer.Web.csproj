@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="$(BuildPropsDirectory)/common.service.props" />
+
+	<PropertyGroup>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>FinanceServices.AuthServer.Web</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Shared.Web" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Admin.Web" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.BootstrapTheme.Razor" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Web.Impersonation" />
+		<PackageReference Include="ByteLabs.PlatformServices.Security.IdentityServer.AspNetCore.Account" />
+		<PackageReference Include="ByteLabs.Foundations.Authentication.OpenIdConnect.SocialProviders" />
+		<PackageReference Include="ByteLabs.Foundations.BlobStoring.FileSystem" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\services\Administration\src\Application\AdministrationService.Application.csproj" />
+		<ProjectReference Include="..\..\..\services\Identity\src\Application\IdentityService.Application.csproj" />
+		<ProjectReference Include="..\..\..\services\Identity\src\Web\IdentityService.Web.csproj" />
+		<ProjectReference Include="..\..\..\services\Saas\src\Application.Abstractions\SaasService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\..\shared\Shared.Hosting.Microservices\Shared.Hosting.Microservices.csproj" />
+		<ProjectReference Include="..\..\..\shared\Shared.Localization\Shared.Localization.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\services\Identity\src\Domain.Context.PostgreSql\IdentityService.Domain.Context.PostgreSql.csproj" />
+	</ItemGroup>
+
+
+</Project>

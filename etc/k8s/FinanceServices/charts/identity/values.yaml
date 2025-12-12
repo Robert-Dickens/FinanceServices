@@ -1,0 +1,41 @@
+config:
+    selfUrl: # https://financeservices-st-identity
+    corsOrigins: # https://financeservices-st-gateway-web,https://financeservices-st-gateway-public-web
+    connectionStrings:
+        identityService: #
+        administrationService: #
+        saasService: #
+    authServer:
+        authority: # http://financeservices-st-authserver
+        requireHttpsMetadata: # "false"
+    dotnetEnv: Staging
+    redisHost: #
+    rabbitmqHost: #
+    elasticsearchUrl: #
+    stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+# Seeded clients
+identityServerClients:
+    authServerRootUrl: #
+    angularRootUrl: #
+    webRootUrl: #
+    blazorRootUrl: #
+    blazorServerRootUrl: #
+    publicWebRootUrl: #
+    webGatewayRootUrl: #
+    publicWebGatewayRootUrl: #
+    administrationServiceRootUrl: #
+    identityServiceRootUrl: #
+    saasServiceRootUrl: #
+    productServiceRootUrl: #
+
+ingress:
+    host: financeservices-st-identity
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-service-identity
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

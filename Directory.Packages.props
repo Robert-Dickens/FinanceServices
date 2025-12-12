@@ -1,0 +1,299 @@
+<Project>
+	<PropertyGroup>
+		<ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+		<FluentBlazorPackageVersion>4.12.0</FluentBlazorPackageVersion>
+		<MicrosoftCurrent>9.0.11</MicrosoftCurrent>
+
+		<ByteLabsCorePackageVersion>4.7.0</ByteLabsCorePackageVersion>
+		<ByteLabsDataFactoryPackageVersion>2.1.0</ByteLabsDataFactoryPackageVersion>
+		<ByteLabsAspNetCorePackageVersion>3.1.0</ByteLabsAspNetCorePackageVersion>
+		<ByteLabsProviderFactoryPackageVersion>2.5.0</ByteLabsProviderFactoryPackageVersion>
+		<ByteLabsPlatformPackageVersion>3.1.0</ByteLabsPlatformPackageVersion>
+		<ByteLabsApsHostingPackageVersion>4.0.0</ByteLabsApsHostingPackageVersion>
+	</PropertyGroup>
+
+
+	<!--ByteLabs Core Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.Foundations.AutoMapper" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Ddd.Application" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Ddd.Application.Abstractions" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Ddd.Domain" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Ddd.Domain.Abstractions" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Validation" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Features" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.GlobalFeatures" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Authorization" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Autofac" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.TestFactory.Core" Version="$(ByteLabsCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.TestFactory.RandomData" Version="$(ByteLabsCorePackageVersion)" />
+	</ItemGroup>
+
+	<!--ByteLabs Data Providers Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.Foundations.DataFactory.EntityFrameworkCore" Version="$(ByteLabsDataFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DataFactory.EntityFrameworkCore.Sqlite" Version="$(ByteLabsDataFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DataFactory.EntityFrameworkCore.SqlServer" Version="$(ByteLabsDataFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DataFactory.EntityFrameworkCore.PostgreSql" Version="$(ByteLabsDataFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DataFactory.Data.PlatformMigrator" Version="$(ByteLabsDataFactoryPackageVersion)" />
+	</ItemGroup>
+
+	<!--ByteLabs Platform Providers Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.Foundations.Http.Client" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Http.Client.Web" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DistributedSystems.CAP.SqlServer" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DistributedSystems.CAP.PostgreSql" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DistributedSystems.CAP.Dashboard" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DistributedSystems.CAP.RabbitMq" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.DistributedSystems.Locking.FileSystem" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.BackgroundJobs.RabbitMQ" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.IdentityModel.HttpClient.Web" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.TokenManagement.WebAssembly" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.Authentication.OpenIdConnect.SocialProviders" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.BlobStoring.FileSystem" Version="$(ByteLabsProviderFactoryPackageVersion)" />
+	</ItemGroup>
+
+	<!--ByteLabs AspNetCore Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Mvc" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Mvc.UI.Theme.Shared" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Mvc.MultiTenancy" Version="$(ByteLabsAspNetCorePackageVersion)" />
+	    <PackageVersion Include="ByteLabs.Foundations.AspNetCore.Mvc.UI.MultiTenancy" Version="$(ByteLabsAspNetCorePackageVersion)" />
+    	<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.Web.Theming" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.Server.Theming" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.WebAssembly.Theming" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.FluentDesignUI.Web" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.FluentDesignUI.Blazor" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.FluentDesignUI.WebAssembly" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Mvc.Client" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.BootstrapTheme.Razor" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.Components.WebAssembly.Autofac" Version="$(ByteLabsAspNetCorePackageVersion)" />
+		<PackageVersion Include="ByteLabs.Foundations.AspNetCore.TestFactory.Api" Version="$(ByteLabsAspNetCorePackageVersion)" />
+	</ItemGroup>
+
+	<!--ByteLabs Platform Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.PlatformServices.AuditLogging.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.AuditLogging.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Gdpr.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.PlatformServices.Permissions.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Domain.Context" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Blazor.Server" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Blazor.WebAssembly" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Domain.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.SaaS.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Blazor.Server" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Blazor.WebAssembly" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Domain.Context" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Domain.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Identity.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.AspNetCore.Account" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Blazor.Server" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Domain.Context" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Domain.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Security.IdentityServer.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Shared.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Public.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Public.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Public.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Public.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Public.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Admin.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Admin.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Admin.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Admin.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Admin.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.PlatformServices.Account.Web.Impersonation" Version="$(ByteLabsPlatformPackageVersion)" />
+
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Domain.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Domain.Context" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Domain" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Application.Abstractions" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Application" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.HttpApi" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.HttpApi.Client" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Blazor" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Blazor.Server" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Blazor.WebAssembly" Version="$(ByteLabsPlatformPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Platform.Foundations.Web" Version="$(ByteLabsPlatformPackageVersion)" />
+
+	</ItemGroup>
+
+	<!--ByteLabs Aps Hosting Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Core" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Mvc" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Blazor" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.AspNetCore" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Distributed" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Gateways" Version="$(ByteLabsApsHostingPackageVersion)" />
+		<PackageVersion Include="ByteLabs.Aps.Hosting.Microservices" Version="$(ByteLabsApsHostingPackageVersion)" />
+	</ItemGroup>
+
+	<!--FluentDesign Packages-->
+	<ItemGroup>
+		<PackageVersion Include="BlazorPro.BlazorSize" Version="$(MicrosoftExtensionsAbstractionsPackageVersion)" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.Web" Version="$(MicrosoftAspNetCorePackageVersion)" />
+		<!-- Microsoft.FluentUI Related Packages -->
+		<PackageVersion Include="Microsoft.FluentUI.AspNetCore.Components" Version="$(FluentBlazorPackageVersion)" />
+		<PackageVersion Include="Microsoft.FluentUI.AspNetCore.Components.Emoji" Version="$(FluentBlazorPackageVersion)" />
+		<PackageVersion Include="Microsoft.FluentUI.AspNetCore.Components.Icons" Version="$(FluentBlazorPackageVersion)" />
+	</ItemGroup>
+
+
+	<!--Global Packages-->
+	<ItemGroup>
+		<PackageVersion Include="ConfigureAwait.Fody" Version="3.3.2" />
+		<PackageVersion Include="Fody" Version="6.8.0" />
+		<PackageVersion Include="NuGet.Versioning" Version="6.7.0" />
+		<PackageVersion Include="JetBrains.Annotations" Version="2024.2.0" />
+		<PackageVersion Include="Newtonsoft.Json" Version="13.0.3" />
+		<PackageVersion Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="$(MicrosoftExtensionsPackageVersion)" />
+		<PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+		<PackageVersion Include="GitVersion.MsBuild" Version="6.2.0" />
+	</ItemGroup>
+
+	<!--Packages for Unit/Integration Tests-->
+	<ItemGroup>
+		<PackageVersion Include="bunit" Version="1.28.9" />
+		<PackageVersion Include="coverlet.collector" Version="6.0.4" />
+		<PackageVersion Include="Shouldly" Version="4.2.1" />
+		<PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.TestHost" Version="$(MicrosoftAspNetCorePackageVersion)" />
+		<PackageVersion Include="Moq" Version="4.20.70" />
+		<PackageVersion Include="Moq.AutoMock" Version="3.5.0" />
+		<PackageVersion Include="FluentAssertions" Version="7.0.0" />
+		<PackageVersion Include="Bogus" Version="35.6.1" />
+		<PackageVersion Include="NSubstitute" Version="5.3.0" />
+		<PackageVersion Include="NSubstitute.Analyzers.CSharp" Version="1.0.17" />
+		<PackageVersion Include="Microsoft.Playwright" Version="1.50.0" />
+		<PackageVersion Include="Microsoft.Playwright.NUnit" Version="1.50.0" />
+		<PackageVersion Include="Microsoft.Playwright.XUnit" Version="1.50.0" />
+		<PackageVersion Include="Microsoft.Playwright.TestAdapter" Version="1.50.0" />
+	</ItemGroup>
+
+	<!--XUnit-->
+	<ItemGroup>
+		<PackageVersion Include="xunit" Version="2.9.2" />
+		<PackageVersion Include="xunit.extensibility.execution" Version="2.9.2" />
+		<PackageVersion Include="xunit.runner.visualstudio" Version="2.8.2" />
+		<PackageVersion Include="Xunit.DependencyInjection" Version="2.9.2" />
+		<PackageVersion Include="Meziantou.Xunit.ParallelTestFramework" Version="2.3.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageVersion Include="xunit.v3" Version="2.0.2" />
+	</ItemGroup>
+
+	<!--NUnit-->
+	<ItemGroup>
+		<PackageVersion Include="NUnit" Version="3.14.0" />
+		<PackageVersion Include="NUnit3TestAdapter" Version="4.5.0" />
+	</ItemGroup>
+
+	<!--OLE DB / EFCore Sdk-->
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.Data.Sqlite" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+
+	</ItemGroup>
+
+	<!--EFCore-->
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Proxies" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+		<PackageVersion Include="Microsoft.EntityFrameworkCore.Sqlite" Version="$(MicrosoftEntityFrameworkCorePackageVersion)" />
+	</ItemGroup>
+
+	<!--StylingAnalyzers-->
+	<ItemGroup>
+		<PackageVersion Include="SonarAnalyzer.CSharp.Styling" Version="10.3.0.106239" />
+		<PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.Common" Version="4.13.0" />
+		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+	</ItemGroup>
+
+	<!--Microsoft NetCore-->
+	<ItemGroup>
+		<PackageVersion Include="Microsoft.Extensions.FileProviders.Embedded" Version="$(MicrosoftAspNetCorePackageVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="$(MicrosoftAspNetCommomPackageVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Options" Version="$(MicrosoftCurrent)" />
+		<PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="$(DotNetCoreCommonPackageVersion)" />
+		<PackageVersion Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.21.0" />
+		<PackageVersion Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="$(MicrosoftAspNetCorePackageVersion)" />
+		<PackageVersion Include="Microsoft.Extensions.Hosting" Version="$(DotNetCoreCommonPackageVersion)" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<PackageVersion Include="RabbitMQ.Client" Version="$(RabbitMqPackageVersion)" />
+	</ItemGroup>
+
+	<!--Aspire Packages-->
+	<ItemGroup>
+		<PackageVersion Include="Aspire.Hosting" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.AppHost" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.Redis" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.Orleans" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.Azure.Storage" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.Testing" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.SqlServer" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.PostgreSQL" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.StackExchange.Redis.OutputCaching" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.StackExchange.Redis" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Microsoft.Data.SqlClient" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.5.2" />
+		<PackageVersion Include="Aspire.Hosting.RabbitMQ" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.RabbitMQ.Client" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Hosting.Azure.CognitiveServices" Version="$(AspireVersion)" />
+		<PackageVersion Include="CommunityToolkit.Aspire.Hosting.Ollama" Version="$(AspireVersion)" />
+		<PackageVersion Include="CommunityToolkit.Aspire.OllamaSharp" Version="9.5.0" />
+
+		<PackageVersion Include="Aspire.Azure.AI.OpenAI" Version="9.3.0-preview.1.25265.20" />
+		<PackageVersion Include="Aspire.Azure.Data.Tables" Version="$(AspireVersion)" />
+		<PackageVersion Include="Aspire.Azure.Storage.Blobs" Version="$(AspireVersion)" />
+
+		<PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.12.0" />
+		<PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.12.0" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.12.0" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.12.0" />
+		<PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0" />
+	</ItemGroup>
+
+
+	<!--Serilog-->
+	<ItemGroup>
+		<PackageVersion Include="Serilog" Version="3.1.1" />
+		<PackageVersion Include="Serilog.AspNetCore" Version="8.0.1" />
+		<PackageVersion Include="Serilog.Sinks.Async" Version="2.0.0" />
+		<PackageVersion Include="Serilog.Sinks.Console" Version="5.0.0" />
+		<PackageVersion Include="Serilog.Sinks.File" Version="5.0.0" />
+		<PackageVersion Include="Serilog.Extensions.Logging" Version="8.0.0" />
+		<PackageVersion Include="Serilog.Sinks.OpenTelemetry" Version="4.1.1" />
+		<PackageVersion Include="Serilog.Sinks.ApplicationInsights" Version="4.0.0" />
+		<PackageVersion Include="Serilog.Sinks.AzureCosmosDB" Version="2.0.0" />
+	</ItemGroup>
+
+</Project>

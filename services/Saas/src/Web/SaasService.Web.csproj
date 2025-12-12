@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<IsPackable>false</IsPackable>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <RootNamespace>$(RootNamespace).Web</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.SaaS.Web" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\SaasService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\HttpApi\SaasService.HttpApi.csproj" />
+	</ItemGroup>
+
+</Project>

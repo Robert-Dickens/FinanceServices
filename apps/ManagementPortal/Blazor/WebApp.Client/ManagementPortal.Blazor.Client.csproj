@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.BlazorWebAssembly">
+	<Import Project="$(BuildPropsDirectory)/common.service.props" />
+
+	<PropertyGroup>
+		<BlazorWebAssemblyLoadAllGlobalizationData>true</BlazorWebAssemblyLoadAllGlobalizationData>
+		<ServiceWorkerAssetsManifest>service-worker-assets.js</ServiceWorkerAssetsManifest>
+		<RootNamespace>FinanceServices.ManagementPortal.Blazor.WebAssembly</RootNamespace>
+	</PropertyGroup>
+
+
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.WebAssembly.Autofac" />
+		<PackageReference Include="ByteLabs.Foundations.TokenManagement.WebAssembly" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.FluentDesignUI.WebAssembly" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ServiceWorker Include="wwwroot\service-worker.js" PublishedContent="wwwroot\service-worker.published.js" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <ProjectReference Include="..\..\..\..\services\Administration\src\Blazor.WebAssembly\AdministrationService.Blazor.WebAssembly.csproj" />
+	  <ProjectReference Include="..\..\..\..\services\Identity\src\Blazor.WebAssembly\IdentityService.Blazor.WebAssembly.csproj" />
+	  <ProjectReference Include="..\..\..\..\services\FinanceServices\src\Blazor.WebAssembly\FinanceServicesService.Blazor.WebAssembly.csproj" />
+	  <ProjectReference Include="..\..\..\..\services\Saas\src\Blazor.WebAssembly\SaasService.Blazor.WebAssembly.csproj" />
+	  <ProjectReference Include="..\..\..\..\shared\Shared.Localization\Shared.Localization.csproj" />
+	  <ProjectReference Include="..\..\..\..\shared\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+	</ItemGroup>
+
+</Project>

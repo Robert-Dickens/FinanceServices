@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+        <RootNamespace>$(RootNamespace).Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.AuditLogging.Domain" />
+		<PackageReference Include="ByteLabs.PlatformServices.Identity.Domain" />
+		<PackageReference Include="ByteLabs.PlatformServices.Permissions.Domain" />
+		<PackageReference Include="ByteLabs.PlatformServices.Security.IdentityServer.Domain" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Domain.Abstractions\IdentityService.Domain.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

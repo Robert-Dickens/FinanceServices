@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" >
+
+
+	<PropertyGroup Condition="'$(TargetFramework.Contains(net9))' == 'true'">
+		<MicrosoftExtensionsAbstractionsPackageVersion>9.0.0</MicrosoftExtensionsAbstractionsPackageVersion>
+		<MicrosoftExtensionsPackageVersion>9.0.0</MicrosoftExtensionsPackageVersion>
+		<MicrosoftAspNetCorePackageVersion>9.0.6</MicrosoftAspNetCorePackageVersion>
+		<MicrosoftAspNetCommomPackageVersion>9.0.6</MicrosoftAspNetCommomPackageVersion>
+		<MicrosoftEntityFrameworkCorePackageVersion>9.0.10</MicrosoftEntityFrameworkCorePackageVersion>
+		<DotNetCoreCommonPackageVersion>9.0.6</DotNetCoreCommonPackageVersion>
+		<AspireVersion>13.0.0</AspireVersion>
+		<RabbitMqPackageVersion>7.1.2</RabbitMqPackageVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework.Contains(net8))' == 'true'">
+		<MicrosoftExtensionsAbstractionsPackageVersion>8.0.0</MicrosoftExtensionsAbstractionsPackageVersion>
+		<MicrosoftExtensionsPackageVersion>8.0.7</MicrosoftExtensionsPackageVersion>
+		<MicrosoftAspNetCorePackageVersion>8.0.17</MicrosoftAspNetCorePackageVersion>
+		<MicrosoftAspNetCommomPackageVersion>8.0.2</MicrosoftAspNetCommomPackageVersion>
+		<MicrosoftEntityFrameworkCorePackageVersion>8.0.17</MicrosoftEntityFrameworkCorePackageVersion>
+		<DotNetCoreCommonPackageVersion>8.0.1</DotNetCoreCommonPackageVersion>
+		<AspireVersion>9.1.0</AspireVersion>
+		<RabbitMqPackageVersion>7.0.0</RabbitMqPackageVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+		<MicrosoftExtensionsAbstractionsPackageVersion>8.0.0</MicrosoftExtensionsAbstractionsPackageVersion>
+		<MicrosoftExtensionsPackageVersion>8.0.7</MicrosoftExtensionsPackageVersion>
+		<MicrosoftAspNetCorePackageVersion>8.0.17</MicrosoftAspNetCorePackageVersion>
+		<MicrosoftAspNetCommomPackageVersion>8.0.2</MicrosoftAspNetCommomPackageVersion>
+		<MicrosoftEntityFrameworkCorePackageVersion>8.0.17</MicrosoftEntityFrameworkCorePackageVersion>
+		<DotNetCoreCommonPackageVersion>8.0.1</DotNetCoreCommonPackageVersion>
+		<RabbitMqPackageVersion>7.0.0</RabbitMqPackageVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+		<MicrosoftExtensionsAbstractionsPackageVersion>8.0.0</MicrosoftExtensionsAbstractionsPackageVersion>
+		<MicrosoftExtensionsPackageVersion>8.0.7</MicrosoftExtensionsPackageVersion>
+		<MicrosoftAspNetCorePackageVersion>8.0.17</MicrosoftAspNetCorePackageVersion>
+		<MicrosoftAspNetCommomPackageVersion>8.0.2</MicrosoftAspNetCommomPackageVersion>
+		<MicrosoftEntityFrameworkCorePackageVersion>8.0.17</MicrosoftEntityFrameworkCorePackageVersion>
+		<DotNetCoreCommonPackageVersion>8.0.1</DotNetCoreCommonPackageVersion>
+		<RabbitMqPackageVersion>6.6.0</RabbitMqPackageVersion>
+	</PropertyGroup>
+
+
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/common.nuget.props" Condition=" '$(IsPackable)' == 'true' "/>
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/common.test.xunit.props" Condition="'$(UseXunit)' == 'true'" />
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/common.test.nunit.props" Condition="'$(UseNunit)' == 'true'" />
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/Analyzers.targets" Condition="'$(UseXunit)' != 'true'  AND '$(UseNunit)' != 'true'"  />
+
+</Project>

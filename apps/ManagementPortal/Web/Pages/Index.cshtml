@@ -1,0 +1,18 @@
+@page
+@model FinanceServices.ManagementPortal.Web.Pages.IndexModel
+@using ByteLabs.Foundations.AspNetCore.Mvc.UI.Layout;
+@using ByteLabs.Foundations.Users;
+@using FinanceServices.ManagementPortal.Web.Navigation
+@inject ICurrentUser CurrentUser
+@inject IPageLayout PageLayout
+@{
+    PageLayout.Content.Title = "Welcome";
+    PageLayout.Content.MenuItemName = FinanceServicesMenus.Home;
+}
+<abp-card>
+    <abp-card-body>
+        <h2>
+            Welcome to FinanceServices!
+        </h2>
+    </abp-card-body>
+</abp-card>

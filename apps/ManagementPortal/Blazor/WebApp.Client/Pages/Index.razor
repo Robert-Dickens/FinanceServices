@@ -1,0 +1,7 @@
+﻿@page "/"
+@inherits FinanceServicesBlazorWebAppComponentBase
+@inject AuthenticationStateProvider AuthenticationStateProvider
+
+<FluentLabel Class="text-center" Size="Size.Large">
+    Welcome Back @CurrentUser.Name
+</FluentLabel>

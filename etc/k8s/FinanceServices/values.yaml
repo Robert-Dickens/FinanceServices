@@ -1,0 +1,380 @@
+# auth-server sub-chart override
+authserver:
+    config:
+        selfUrl: https://financeservices-st-authserver
+        corsOrigins: https://financeservices-st-gateway-web,https://financeservices-st-gateway-web-public,https://financeservices-st-identity,https://financeservices-st-administration,https://financeservices-st-saas,https://financeservices-st-product
+        allowedRedirectUrls: https://financeservices-st-angular
+        identityService:
+            connString: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Identity;User Id=sa;password=myPassw@rd"
+        administrationService:
+            connString: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+        saasService:
+            connString: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    ingress:
+        host: financeservices-st-authserver
+    image:
+        repository: abpvnext/financeservices-app-authserver
+        tag: latest
+
+# identity-service sub-chart override
+identity:
+    config:
+        selfUrl: https://financeservices-st-identity
+        corsOrigins: https://financeservices-st-gateway-web
+        connectionStrings:
+            identityService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Identity;User Id=sa;password=myPassw@rd"
+            administrationService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+            saasService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    identityServerClients: # Seeded Clients
+        authServerRootUrl: https://financeservices-st-authserver/
+        angularRootUrl: https://financeservices-st-angular/
+        webRootUrl: https://financeservices-st-web/
+        blazorRootUrl: https://financeservices-st-blazor/
+        blazorServerRootUrl: https://financeservices-st-blazor-server/
+        publicWebRootUrl: https://financeservices-st-public-web/
+        webGatewayRootUrl: https://financeservices-st-gateway-web/
+        publicWebGatewayRootUrl: https://financeservices-st-gateway-web-public/
+        administrationServiceRootUrl: https://financeservices-st-administration/
+        identityServiceRootUrl: https://financeservices-st-identity/
+        saasServiceRootUrl: https://financeservices-st-saas/
+        productServiceRootUrl: https://financeservices-st-product/
+    ingress:
+        host: financeservices-st-identity
+    image:
+        repository: abpvnext/financeservices-service-identity
+        tag: latest
+
+# administration-service sub-chart override
+administration:
+    config:
+        selfUrl: https://financeservices-st-administration
+        gatewayUrl: https://financeservices-st-gateway-internal/
+        corsOrigins: https://financeservices-st-gateway-web,https://financeservices-st-gateway-web-public
+        connectionStrings:
+            administrationService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+            saasService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+        authServer:
+            authority: http://eshop-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    synchedCommunication: # Used for server-to-server (client-credentials) communication with identityService for user permissions
+        authority: https://financeservices-st-authserver
+    ingress:
+        host: financeservices-st-administration
+    image:
+        repository: abpvnext/financeservices-service-administration
+        tag: latest
+
+# saas-service sub-chart override
+saas:
+    config:
+        selfUrl: https://financeservices-st-saas
+        corsOrigins: https://financeservices-st-gateway-web
+        connectionStrings:
+            administrationService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+            saasService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    ingress:
+        host: financeservices-st-saas
+    image:
+        repository: abpvnext/financeservices-service-administration
+        tag: latest
+
+# product-service sub-chart override
+product:
+    config:
+        selfUrl: https://financeservices-st-product
+        corsOrigins: https://financeservices-st-gateway-web,https://financeservices-st-gateway-web-public
+        connectionStrings:
+            productService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_ProductService;User Id=sa;password=myPassw@rd"
+            administrationService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+            saasService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    ingress:
+        host: financeservices-st-product
+    image:
+        repository: abpvnext/financeservices-service-product
+        tag: latest
+
+# gateway-web sub-chart override
+gateway-web:
+    config:
+        selfUrl: https://financeservices-st-gateway-web
+        corsOrigins: https://financeservices-st-angular
+        globalConfigurationBaseUrl: http://financeservices-st-gateway-web
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    reRoutes:
+        authserver:
+            dns: https://authserver.financeservices.dev
+            schema: http
+            host: financeservices-st-authserver
+            port: 80
+        identityService:
+            dns: https://identity.financeservices.dev
+            schema: http
+            host: financeservices-st-identity
+            port: 80
+        administrationService:
+            dns: https://administration.financeservices.dev
+            schema: http
+            host: financeservices-st-administration
+            port: 80
+        saasService:
+            dns: https://saas.financeservices.dev
+            schema: http
+            host: financeservices-st-saas
+            port: 80
+        productService:
+            dns: https://product.financeservices.dev
+            schema: http
+            host: financeservices-st-product
+            port: 80
+    ingress:
+        host: financeservices-st-gateway-web
+    image:
+        repository: abpvnext/financeservices-gateway-web
+        tag: latest
+        pullPolicy: IfNotPresent
+
+# gateway-web-public sub-chart override
+gateway-web-public:
+    config:
+        selfUrl: https://financeservices-st-gateway-web-public
+        globalConfigurationBaseUrl: http://financeservices-st-gateway-web-public
+        corsOrigins: https://financeservices-st-gateway-web,https://financeservices-st-gateway-web-public
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    reRoutes:
+        identityService:
+            schema: http
+            host: financeservices-st-identity
+            port: 80
+        administrationService:
+            schema: http
+            host: financeservices-st-administration
+            port: 80
+        productService:
+            schema: http
+            host: financeservices-st-product
+            port: 80
+    ingress:
+        host: financeservices-st-gateway-web-public
+        tlsSecret: financeservices-tls
+    image:
+        repository: abpvnext/financeservices-gateway-web-public
+        tag: latest
+        pullPolicy: IfNotPresent
+
+kibana:
+    config:
+        elasticsearchUrl: http://financeservices-st-elasticsearch:9200
+
+# dbmigrator sub-chart override
+dbmigrator:
+    config:
+        connectionStrings:
+            identityService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Identity;User Id=sa;password=myPassw@rd"
+            administrationService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Administration;User Id=sa;password=myPassw@rd"
+            saasService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_Saas;User Id=sa;password=myPassw@rd"
+            productService: "Server=financeservices-st-sqldb,1433;Database=FinanceServices_ProductService;User Id=sa;password=myPassw@rd"
+        dotnetEnv: Staging
+    identityServerClients: # Seeded Clients
+        authServerRootUrl: https://financeservices-st-authserver/
+        angularRootUrl: https://financeservices-st-angular/
+        webRootUrl: https://financeservices-st-web/
+        blazorRootUrl: https://financeservices-st-blazor/
+        blazorServerRootUrl: https://financeservices-st-blazor-server/
+        publicWebRootUrl: https://financeservices-st-public-web/
+        webGatewayRootUrl: https://financeservices-st-gateway-web/
+        publicWebGatewayRootUrl: https://financeservices-st-gateway-web-public/
+        administrationServiceRootUrl: https://financeservices-st-administration/
+        identityServiceRootUrl: https://financeservices-st-identity/
+        saasServiceRootUrl: https://financeservices-st-saas/
+        productServiceRootUrl: https://financeservices-st-product/
+    image:
+        repository: abpvnext/financeservices-db-migrator
+        tag: latest
+        pullPolicy: IfNotPresent
+
+# Public Web application sub-chart override
+publicweb:
+    config:
+        selfUrl: https://financeservices-st-publicweb
+        gatewayUrl: https://financeservices-st-gateway-web-public
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    ingress:
+        host: financeservices-st-publicweb
+        tlsSecret: financeservices-tls
+    image:
+        repository: abpvnext/financeservices-app-publicweb
+        tag: latest
+        pullPolicy: IfNotPresent
+
+# Web(MVC) backoffice application sub-chart override
+web:
+    config:
+        selfUrl: https://financeservices-st-web
+        gatewayUrl: https://financeservices-st-gateway-web
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+        dotnetEnv: Staging
+        redisHost: financeservices-st-redis
+        rabbitmqHost: financeservices-st-rabbitmq
+        elasticsearchUrl: http://financeservices-st-elasticsearch
+    ingress:
+        host: financeservices-st-web
+        tlsSecret: financeservices-tls
+    image:
+        repository: abpvnext/financeservices-app-web
+        tag: latest
+        pullPolicy: IfNotPresent
+
+# Angular backoffice application sub-chart override
+angular:
+    config:
+        selfUrl: https://financeservices-st-angular
+        gatewayUrl: https://financeservices-st-gateway-web
+        authServer:
+            authority: http://financeservices-st-authserver
+            requireHttpsMetadata: "false"
+    ingress:
+        host: financeservices-st-angular
+        tlsSecret: financeservices-tls
+    image:
+        repository: abpvnext/financeservices-app-angular
+        tag: latest
+        pullPolicy: IfNotPresent
+
+# Default values for FinanceServices.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+    repository: nginx
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+    # Specifies whether a service account should be created
+    create: true
+    # Annotations to add to the service account
+    annotations: {}
+    # The name of the service account to use.
+    # If not set and create is true, a name is generated using the fullname template
+    name: ""
+
+podAnnotations: {}
+
+podSecurityContext:
+    {}
+    # fsGroup: 2000
+
+securityContext:
+    {}
+    # capabilities:
+    #   drop:
+    #   - ALL
+    # readOnlyRootFilesystem: true
+    # runAsNonRoot: true
+    # runAsUser: 1000
+
+service:
+    type: ClusterIP
+    port: 80
+
+ingress:
+    enabled: false
+    className: ""
+    annotations:
+        {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+    hosts:
+        - host: chart-example.local
+          paths:
+              - path: /
+                pathType: ImplementationSpecific
+    tls: []
+    #  - secretName: chart-example-tls
+    #    hosts:
+    #      - chart-example.local
+
+resources:
+    {}
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
+
+autoscaling:
+    enabled: false
+    minReplicas: 1
+    maxReplicas: 100
+    targetCPUUtilizationPercentage: 80
+    # targetMemoryUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

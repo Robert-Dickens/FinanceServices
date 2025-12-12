@@ -1,0 +1,9 @@
+<Project>
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../../'))" />
+
+    <PropertyGroup>
+        <ProductName>Payables</ProductName>
+        <RootNamespace>ByteLabs.FinanceServices.$(ProductName)</RootNamespace>
+    </PropertyGroup>
+
+</Project>

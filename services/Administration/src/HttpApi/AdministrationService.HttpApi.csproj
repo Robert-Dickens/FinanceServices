@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Platform.Foundations.HttpApi" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\AdministrationService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

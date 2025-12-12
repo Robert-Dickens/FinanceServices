@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.SaaS.HttpApi.Client" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\SaasService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

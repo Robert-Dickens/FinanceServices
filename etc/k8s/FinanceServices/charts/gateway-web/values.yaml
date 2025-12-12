@@ -1,0 +1,43 @@
+config:
+    selfUrl: # https://financeservices-st-gateway-web
+    corsOrigins: # https://financeservices-st-angular
+    globalConfigurationBaseUrl: # http://financeservices-st-gateway-web
+    authServer:
+        authority: # http://financeservices-st-authserver
+        requireHttpsMetadata: # "false"
+    dotnetEnv: #
+    redisHost: #
+    rabbitmqHost: #
+    elasticsearchUrl: #
+
+reRoutes:
+    authserver:
+        schema: # http
+        host: # financeservices-st-authserver
+        port: # 80
+    identityService:
+        schema: # http
+        host: # financeservices-st-identity
+        port: # 80
+    administrationService:
+        schema: # http
+        host: # financeservices-st-administration
+        port: # 80
+    saasService:
+        schema: # http
+        host: # financeservices-st-saas
+        port: # 80
+    productService:
+        schema: # http
+        host: # financeservices-st-saas
+        port: # 80
+ingress:
+    host: # financeservices-st-gateway-web
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-gateway-web
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

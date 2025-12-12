@@ -1,0 +1,29 @@
+config:
+    selfUrl: # https://financeservices-st-authserver
+    corsOrigins: # https://financeservices-st-identity,https://financeservices-st-administration,https://financeservices-st-saas
+    allowedRedirectUrls: #https://financeservices-st-web
+    identityService:
+        connString: #
+    administrationService:
+        connString: #
+    saasService:
+        connString: #
+    authServer:
+        authority: #http://financeservices-st-authserver
+        requireHttpsMetadata: #"false"
+    dotnetEnv: #
+    redisHost: #
+    rabbitmqHost: #
+    elasticsearchUrl: #
+    stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+ingress:
+    host: # financeservices-st-authserver
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-app-authserver
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

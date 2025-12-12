@@ -1,0 +1,28 @@
+{
+  "culture": "sk",
+  "texts": {
+    "Menu:Recevables": "Produktový servis",
+    "Menu:Products": "Produkty",
+    "Permission:Recevables": "Produktové služby",
+    "Permission:Products": "Produkty",
+    "Permission:Create": "Vytvoriť",
+    "Permission:Edit": "Upraviť",
+    "Permission:Delete": "Zmazať",
+    "Products": "Produkty",
+    "NewProduct": "Nový produkt",
+    "Actions": "Akcie",
+    "SuccessfullyDeleted": "Úspešne zmazaný",
+    "DeleteConfirmationMessage": "Ste si istý, že chcete tento produkt zmazať?",
+    "Search": "Hľadať",
+    "Pick": "Vybrať",
+    "SeeAdvancedFilters": "Rozšírené filtre",
+    "Name": "Názov",
+    "Price": "Cena",
+    "MinPrice": "Minimálna cena",
+    "MaxPrice": "Maximálna cena",
+    "Product": "Produkt",
+    "AreYouSure": "Ste si istý?",
+    "MinName": "Min. názov",
+    "MaxName": "Max názov"
+  }
+}

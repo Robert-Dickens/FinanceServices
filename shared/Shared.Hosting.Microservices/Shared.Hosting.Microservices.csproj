@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<ProductFeatureGroup>Shared</ProductFeatureGroup>
+		<ModuleNamespace>Hosting</ModuleNamespace>
+		<RootNamespace>FinanceServices.Shared.Hosting.Microservices</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Aps.Hosting.Microservices" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\Shared.Hosting.Distributed\Shared.Hosting.Distributed.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Npgsql.EntityFrameworkCore.PostgreSQL" />
+		<ProjectReference Include="..\..\services\Administration\src\Domain.Context.PostgreSql\AdministrationService.Domain.Context.PostgreSql.csproj" />
+		<ProjectReference Include="..\..\services\Saas\src\Domain.Context.PostgreSql\SaasService.Domain.Context.PostgreSql.csproj" />
+	</ItemGroup>
+
+
+</Project>

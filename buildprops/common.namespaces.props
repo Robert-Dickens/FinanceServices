@@ -1,0 +1,37 @@
+<Project>
+
+
+	<PropertyGroup>
+		<_RootNamespace Condition="'$(AssemblyPrefixName)' != '' ">$(AssemblyPrefixName)</_RootNamespace>
+		<_RootNamespace Condition="'$(ProductGroup)' != '' ">$(AssemblyProductPrefix).$(ProductGroup)</_RootNamespace>
+
+		<_RootNamespace Condition="'$(_RootNamespace)' == '' ">$(AssemblyProductPrefix).$(AssemblyProductProductName)</_RootNamespace>
+
+		<_RootNamespace Condition="'$(ProductName)' != '' ">$(_RootNamespace).$(ProductName)</_RootNamespace>
+		<_RootNamespace Condition="'$(ProductFeatureGroup)' != ''" >$(_RootNamespace).$(ProductFeatureGroup)</_RootNamespace>
+		<_RootNamespace Condition="'$(ModuleNamespace)' != ''" >$(_RootNamespace).$(ModuleNamespace)</_RootNamespace>
+
+
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.Domain')) ">$(_RootNamespace).Domain</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.Contains('Domain.Context')) ">$(_RootNamespace).Domain</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.HttpApi')) ">$(_RootNamespace).HttpApi</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.HttpApi.Client')) ">$(_RootNamespace).HttpApi.Client</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.Dapr.Client')) ">$(_RootNamespace).Dapr.Client</_RootNamespace>
+
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.Web')) ">$(_RootNamespace).Web</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.Contains('.Web.')) ">$(_RootNamespace).Web</_RootNamespace>
+
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.Blazor')) ">$(_RootNamespace).Blazor</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.Contains('.Blazor.')) ">$(_RootNamespace).Blazor</_RootNamespace>
+
+		<_RootNamespace Condition=" $(MSBuildProjectName.EndsWith('.WebAssembly')) ">$(_RootNamespace).WebAssembly</_RootNamespace>
+		<_RootNamespace Condition=" $(MSBuildProjectName.Contains('.WebAssembly.')) ">$(_RootNamespace).WebAssembly</_RootNamespace>
+
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<RootNamespace Condition=" '$(RootNamespace)' == '' OR '$(RootNamespace)' == '$(MSBuildProjectName)' " >$(_RootNamespace)</RootNamespace>
+	</PropertyGroup>
+	
+</Project>

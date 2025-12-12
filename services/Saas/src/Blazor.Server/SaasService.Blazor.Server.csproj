@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<OutputType>Library</OutputType>
+		<NoDefaultLaunchSettingsFile>true</NoDefaultLaunchSettingsFile>
+        <RootNamespace>$(RootNamespace).Blazor</RootNamespace>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.SaaS.Blazor.Server" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.Server.Theming" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Blazor\SaasService.Blazor.csproj" />
+	</ItemGroup>
+
+</Project>

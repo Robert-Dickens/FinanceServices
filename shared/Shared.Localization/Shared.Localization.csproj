@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+		<ProductFeatureGroup>Shared</ProductFeatureGroup>
+		<RootNamespace>FinanceServices.Shared.Localization</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.Validation" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+	</ItemGroup>
+
+</Project>

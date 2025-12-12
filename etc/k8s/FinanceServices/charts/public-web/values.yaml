@@ -1,0 +1,24 @@
+config:
+    selfUrl: #
+    gatewayUrl: #
+    authServer:
+        authority: # http://financeservices-st-authserver
+        requireHttpsMetadata: #"false"
+        isOnK8s: # "true"
+        metaAddress: # http://financeservices-st-authserver
+    dotnetEnv: #
+    redisHost: #
+    rabbitmqHost: #
+    elasticsearchUrl: #
+    stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+ingress:
+    host: # financeservices-st-publicweb
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-app-publicweb
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

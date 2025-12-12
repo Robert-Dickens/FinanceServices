@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<UseXunit>true</UseXunit>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\src\Application\Recevables.Application.csproj" />
+	  <ProjectReference Include="..\Domain.Tests\Recevables.Domain.Tests.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,32 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "https://localhost:5516",
+      "sslPort": 5516
+    }
+  },
+  "profiles": {
+    "Https": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "dotnetRunMessages": true,
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "applicationUrl": "https://localhost:5516",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Aspire": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "dotnetRunMessages": true,
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "applicationUrl": "https://localhost:5516",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

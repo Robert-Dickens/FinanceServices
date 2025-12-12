@@ -1,0 +1,9 @@
+<Project>
+	<Import Project="$(MSBuildThisFileDirectory)/common.test.props" />
+
+	<ItemGroup>
+		<PackageReference Include="nunit"  />
+		<PackageReference Include="NUnit3TestAdapter"  />
+	</ItemGroup>
+
+</Project>

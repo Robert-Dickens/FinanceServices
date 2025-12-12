@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.SaaS.Application" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\SaasService.Domain.csproj" />
+		<ProjectReference Include="..\Application.Abstractions\SaasService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

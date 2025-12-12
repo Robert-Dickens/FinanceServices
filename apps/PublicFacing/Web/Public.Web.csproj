@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<Import Project="$(BuildPropsDirectory)/common.service.props" />
+
+	<PropertyGroup>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<PreserveCompilationReferences>true</PreserveCompilationReferences>
+		<IsPackable>false</IsPackable>
+		<RootNamespace>FinanceServices.PublicServer.Web</RootNamespace>
+	</PropertyGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\..\services\Administration\src\HttpApi.Client\AdministrationService.HttpApi.Client.csproj" />
+		<ProjectReference Include="..\..\..\services\FinanceServices\src\Web\FinanceServicesService.Web.csproj" />
+		<ProjectReference Include="..\..\..\shared\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+		<ProjectReference Include="..\..\..\shared\Shared.Localization\Shared.Localization.csproj" />
+		<ProjectReference Include="..\..\..\services\FinanceServices\src\HttpApi.Client\FinanceServicesService.HttpApi.Client.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Aps.Hosting.Mvc" />
+		<PackageReference Include="ByteLabs.Foundations.Http.Client.Web" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Mvc.Client" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Public.HttpApi.Client" />
+		<PackageReference Include="ByteLabs.Foundations.AspNetCore.Components.BootstrapTheme.Razor" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Shared.Web" />
+		<PackageReference Include="ByteLabs.PlatformServices.Gdpr.Web" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Web.Impersonation" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Content Include="Pages\**\*.js">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Include="Pages\**\*.css">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

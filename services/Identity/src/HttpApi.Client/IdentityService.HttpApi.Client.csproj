@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Identity.HttpApi.Client" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Admin.HttpApi.Client" />
+		<PackageReference Include="ByteLabs.PlatformServices.Security.IdentityServer.HttpApi.Client" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\IdentityService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+</Project>

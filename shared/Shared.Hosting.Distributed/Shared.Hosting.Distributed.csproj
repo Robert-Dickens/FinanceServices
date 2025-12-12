@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<ProductFeatureGroup>Shared</ProductFeatureGroup>
+		<ModuleNamespace>Hosting</ModuleNamespace>
+		<RootNamespace>FinanceServices.Shared.Hosting.Distributed</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.RabbitMQ.Client" />
+		<PackageReference Include="RabbitMQ.Client" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Aps.Hosting.Distributed" />
+		<PackageReference Include="ByteLabs.Foundations.DistributedSystems.CAP.RabbitMq" />
+		<PackageReference Include="ByteLabs.Foundations.BackgroundJobs.RabbitMQ" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Shared.Hosting.AspNetCore\FinanceServices.Shared.Hosting.AspNetCore.csproj" />
+	  <ProjectReference Include="..\Shared.Settings\FinanceServices.Shared.Settings.csproj" />
+	</ItemGroup>
+
+</Project>

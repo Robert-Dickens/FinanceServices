@@ -1,0 +1,33 @@
+config:
+    selfUrl: # https://financeservices-st-administration
+    gatewayUrl: # https://financeservices-st-gateway-internal/
+    corsOrigins: # https://financeservices-st-gateway-web,https://financeservices-st-gateway-public-web
+    connectionStrings:
+        administrationService: #
+        saasService: #
+    authServer:
+        authority: # http://financeservices-st-authserver
+        requireHttpsMetadata: "false"
+    dotnetEnv: #
+    redisHost: #
+    rabbitmqHost: #
+    elasticsearchUrl: #
+    stringEncryptionDefaultPassPhrase: gsKnGZ041HLL4IM8
+
+synchedCommunication:
+    grantType: # "client_credentials"
+    clientId: #
+    clientSecret: #
+    authority: # https://financeservices-st-authserver
+    scope: # "IdentityService"
+
+ingress:
+    host: # financeservices-st-administration
+    tlsSecret: financeservices-tls
+
+image:
+    repository: abpvnext/financeservices-service-administration
+    tag: latest
+    pullPolicy: IfNotPresent
+
+env: {}

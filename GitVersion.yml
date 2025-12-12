@@ -1,0 +1,145 @@
+workflow: GitFlow/v1
+mode: ContinuousDelivery
+label: '{BranchName}'
+increment: Inherit
+tag-pre-release-weight: 60000
+
+assembly-versioning-format: '{Major}.{Minor}.{Patch}'
+assembly-file-versioning-format: '{Major}.{Minor}.{Patch}.{WeightedPreReleaseNumber ?? 0}'
+
+update-build-number: true
+semantic-version-format: Strict
+
+tag-prefix: '[vV]?'
+version-in-branch-pattern: (?<version>[vV]?\d+(\.\d+)?(\.\d+)?).*
+major-version-bump-message: \+semver:\s?(breaking|major)
+minor-version-bump-message: \+semver:\s?(feature|minor)
+patch-version-bump-message: \+semver:\s?(fix|patch)
+no-bump-message: \+semver:\s?(none|skip)
+
+commit-date-format: yyyy-MM-dd
+merge-message-formats: {}
+
+branches:
+  develop:
+    mode: ContinuousDelivery
+    label: alpha
+    increment: Minor
+    prevent-increment:
+      when-current-commit-tagged: false
+    track-merge-target: true
+    regex: ^dev(elop)?(ment)?$
+    source-branches:
+    - main
+    - release
+    tracks-release-branches: false
+    is-main-branch: false
+    pre-release-weight: 0
+  main:
+    mode: ContinuousDelivery
+    label: ''
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+    regex: ^master$|^main$
+    tracks-release-branches: true
+    is-main-branch: true
+    pre-release-weight: 55000
+  release:
+    mode: ContinuousDelivery
+    label: beta
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    regex: ^release(s)?[/-](?<BranchName>.+)
+    source-branches:
+    - main
+    - develop
+    - support
+    is-release-branch: true
+    pre-release-weight: 30000
+  feature:
+    mode: ContinuousDelivery
+    prevent-increment:
+      when-current-commit-tagged: false
+    track-merge-message: true
+    regex: ^feature(s)?[/-](?<BranchName>.+)
+    source-branches:
+    - develop
+    - support
+    - hotfix
+    pre-release-weight: 30000
+  pull-request:
+    mode: ContinuousDelivery
+    label: beta
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    # label-number-pattern: '[/-](?<number>\d+)'
+    track-merge-message: true
+    regex: ^(pull|pull\-requests|pr)[/-]
+    source-branches:
+    - develop
+    - feature
+    - support
+    is-source-branch-for: []
+    pre-release-weight: 30000
+  release-pull-request:
+    mode: ContinuousDelivery
+    label: rc
+    prevent-increment:
+      of-merged-branch: true
+      when-current-commit-tagged: false
+    # label-number-pattern: '[/-](?<number>\d+)'
+    track-merge-message: true
+    regex: ^(pull|pull\-requests|pr)[/-]
+    source-branches:
+    - main
+    - release
+    - hotfix
+    is-source-branch-for: []
+    pre-release-weight: 30000
+  hotfix:
+    mode: ContinuousDelivery
+    label: rc
+    increment: Patch
+    prevent-increment:
+      when-current-commit-tagged: false
+    regex: ^hotfix(es)?[/-](?<BranchName>.+)
+    source-branches:
+    - main
+    - support
+    is-source-branch-for: []
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
+  bugfix:
+    mode: ContinuousDelivery
+    increment: Patch
+    prevent-increment:
+      when-current-commit-tagged: false
+    regex: ^bugfix(es)?[/-](?<BranchName>.+)
+    source-branches:
+    - support
+    - develop
+    - release
+    - feature
+    is-source-branch-for: []
+    is-release-branch: true
+    is-main-branch: false
+    pre-release-weight: 30000
+  support:
+    mode: ContinuousDelivery
+    label: ''
+    increment: Patch
+    prevent-increment:
+      of-merged-branch: true
+    track-merge-target: false
+    regex: ^support[/-](?<BranchName>.+)
+    source-branches:
+    - main
+    is-source-branch-for: []
+    tracks-release-branches: false
+    is-release-branch: false
+    is-main-branch: true
+    pre-release-weight: 55000

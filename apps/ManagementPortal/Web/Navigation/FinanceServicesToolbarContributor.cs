@@ -1,0 +1,23 @@
+using ByteLabs.Foundations.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
+using ByteLabs.Foundations.Users;
+using FinanceServices.ManagementPortal.Web.Components.Toolbar.LoginLink;
+
+namespace FinanceServices.ManagementPortal.Web.Navigation;
+
+public class FinanceServicesToolbarContributor : IToolbarContributor
+{
+    public virtual Task ConfigureToolbarAsync(IToolbarConfigurationContext context)
+    {
+        if (context.Toolbar.Name != StandardToolbars.Main)
+        {
+            return Task.CompletedTask;
+        }
+
+        if (!context.ServiceProvider.GetRequiredService<ICurrentUser>().IsAuthenticated)
+        {
+            context.Toolbar.Items.Add(new ToolbarItem(typeof(LoginLinkViewComponent)));
+        }
+
+        return Task.CompletedTask;
+    }
+}

@@ -1,0 +1,5 @@
+﻿namespace ByteLabs.FinanceServices.Services.FinanceServices.Testing;
+
+public abstract class FinanceServicesServiceAcceptanceTestBase : FinanceServicesServiceTestBase<FinanceServicesServiceAcceptanceTestModule>
+{
+}

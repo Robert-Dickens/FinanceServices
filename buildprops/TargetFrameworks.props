@@ -1,0 +1,48 @@
+<Project>
+	<PropertyGroup>
+		<CurrentLongTermTargetFramework>net8.0</CurrentLongTermTargetFramework>
+		<CurrentTargetFramework>net9.0</CurrentTargetFramework>
+		<DefaultNetCoreTargetFramework>$(CurrentLongTermTargetFramework);$(CurrentTargetFramework)</DefaultNetCoreTargetFramework>
+
+		<CurrentWindowsTargetFramework>$(CurrentTargetFramework)-windows</CurrentWindowsTargetFramework>
+		<CurrentMacOSTargetFramework>$(CurrentTargetFramework)-macos</CurrentMacOSTargetFramework>
+		<CurrentAndroidTargetFramework>$(CurrentTargetFramework)-android34.0</CurrentAndroidTargetFramework>
+		<CurrentIOSTargetFramework>$(CurrentTargetFramework)-ios17.0</CurrentIOSTargetFramework>
+		<CurrentTvOSTargetFramework>$(CurrentTargetFramework)-tvos17.0</CurrentTvOSTargetFramework>
+		<CurrentBrowserTargetFramework>$(CurrentTargetFramework)-browser</CurrentBrowserTargetFramework>
+		<CurrentTizenTargetFramework>$(CurrentTargetFramework)-tizen</CurrentTizenTargetFramework>
+		
+		<NetFrameworks>net48</NetFrameworks>
+		<LegacyTargetFrameworks>net6.0</LegacyTargetFrameworks>
+		<LegacyWindowsTargetFrameworks>net6.0-windows</LegacyWindowsTargetFrameworks>
+
+
+		<NetStandard20>netstandard2.0</NetStandard20>
+		<NetStandard21>netstandard2.1</NetStandard21>
+		<NetFullFramework>net48</NetFullFramework>
+
+		<PreviousLtsTargetFramework>$(LegacyTargetFrameworks)</PreviousLtsTargetFramework>
+		<!--Project Frameworks-->
+		<CommonFrameworks>$(NetStandard20)</CommonFrameworks>
+		<ProjectFrameworks>$(CommonFrameworks);$(DefaultNetCoreTargetFramework)</ProjectFrameworks>
+		<ClientCompatibility>$(ProjectFrameworks);$(NetStandard21)</ClientCompatibility>
+		<DesktopCompatibility Condition="$([MSBuild]::IsOSPlatform('windows'))">$(NetFullFramework)</DesktopCompatibility>
+
+
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(IncludeBuildingLegacyNetFrameworks)' == 'True'">
+		<LegacyNetFrameworks>net46</LegacyNetFrameworks>
+	</PropertyGroup>
+
+
+	<PropertyGroup>
+		<MinSupportedIOSVersion>13.0</MinSupportedIOSVersion>
+		<MinSupportedTvOSVersion>13.0</MinSupportedTvOSVersion>
+		<MinSupportedMacCatalystVersion>13.1</MinSupportedMacCatalystVersion>
+		<MinSupportedTizenVersion>6.5</MinSupportedTizenVersion>
+		<MinSupportedAndroidVersion>21.0</MinSupportedAndroidVersion>
+		<MinSupportedMacOsVersion>10.15</MinSupportedMacOsVersion>
+	</PropertyGroup>
+
+</Project>

@@ -1,0 +1,33 @@
+{
+  "culture": "en",
+  "texts": {
+    "Menu:Payables": "Payables",
+    "Menu:Products": "Products",
+    "Welcome": "Congratulations Payables is successfully running!",
+    "LongWelcomeMessage": "Welcome to the Payables application. This is a sample project page",
+    "WelcomeBack": "Welcome Back {0}",
+    "Permission:Payables": "Payables",
+    "Permission:Products": "Products",
+    "Permission:Create": "Create",
+    "Permission:Edit": "Edit",
+    "Permission:Delete": "Delete",
+    "Products": "Products",
+    "Feature:PayablesFeatures": "Payables",
+    "Feature:PayablesFeaturesDescription": "Payables",
+    "NewProduct": "New Product",
+    "Actions": "Actions",
+    "SuccessfullyDeleted": "Successfully deleted",
+    "DeleteConfirmationMessage": "Are you sure you want to delete this product?",
+    "Search": "Search",
+    "Pick": "Pick",
+    "SeeAdvancedFilters": "Advanced filters",
+    "Name": "Name",
+    "Price": "Price",
+    "MinPrice": "Min Price",
+    "MaxPrice": "Max Price",
+    "Product": "Product",
+    "AreYouSure": "Are you sure?",
+    "MinName": "Min Name",
+    "MaxName": "Max Name"
+  }
+}

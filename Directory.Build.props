@@ -1,0 +1,57 @@
+<Project>
+
+	<PropertyGroup>
+		<CustomAfterMicrosoftCommonProps>$(MSBuildThisFileDirectory)buildprops/common.assemblyname.props</CustomAfterMicrosoftCommonProps>
+		<CustomAfterDirectoryBuildTargets>$(MSBuildThisFileDirectory)buildprops/Build.AssemblyNaming.targets</CustomAfterDirectoryBuildTargets>
+
+		<!-- 
+		This is used to turn on by default reference assembly loading for Netstandard2.0 and Netstandard2.1 https://github.com/dotnet/sdk/pull/31598/files/039025fa3575263d1b1f5ca2f285170c9b377601#
+		Because of Sdk changes multi targeted projects will not load project references except for the latest Sdk version
+		Which makes sence however it causes DocFx to print Workspace failed with: [Warning] Found project reference without a matching metadata reference:
+		<ProduceReferenceAssembly Condition="('$(ProduceReferenceAssembly)' == '' or '$(ProduceReferenceAssembly)' != 'false') and '$(TargetFramework.Contains(netstandard2))' == 'true' " >true</ProduceReferenceAssembly>
+		-->
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<UseArtifactsOutput>true</UseArtifactsOutput>
+		<ArtifactsPath Condition="'$(UseArtifactsOutput)' == 'true' ">$(MSBuildThisFileDirectory)buildartifacts</ArtifactsPath>
+	</PropertyGroup>
+
+	<!-- To use dotnet ef without 'msbuildprojectextensionspath' -->
+	<Import Condition="'$(UseArtifactsOutput)' == 'true' AND Exists('$(MSBuildProjectDirectory)\obj\$(MSBuildProjectFile).EntityFrameworkCore.targets')"
+            Project="$(MSBuildProjectDirectory)\obj\$(MSBuildProjectFile).EntityFrameworkCore.targets"/>
+
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/common.props"/>
+	<Import Project="$(MSBuildThisFileDirectory)/buildprops/TargetFrameworks.props"/>
+
+	<PropertyGroup>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<SolutionRootDirectory>$(MSBuildThisFileDirectory)</SolutionRootDirectory>
+		<BuildPropsDirectory>$(SolutionRootDirectory)/buildprops</BuildPropsDirectory>
+
+		<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+
+	</PropertyGroup>
+
+	<!-- Compilation options which apply to all languages. Language-specific options should be set in eng/targets/$(lang).Common.props -->
+	<PropertyGroup>
+		<BuildArchitecture>$([System.Runtime.InteropServices.RuntimeInformation]::ProcessArchitecture.ToString().ToLowerInvariant())</BuildArchitecture>
+
+		<!-- This defines the list of RIDs supported by the ASP.NET Core shared framework.
+         The list is a semicolon separated list of RIDs. Whitespace may not be added to the property. -->
+		<SupportedRuntimeIdentifiers>win-x64;win-x86;win-arm;win-arm64;osx-x64;osx-arm64;linux-musl-x64;linux-musl-arm;linux-musl-arm64;linux-x64;linux-arm;linux-arm64;freebsd-x64</SupportedRuntimeIdentifiers>
+		<SupportedRuntimeIdentifiers Condition=" '$(DotNetBuildSourceOnly)' == 'true' ">$(SupportedRuntimeIdentifiers);$(TargetRuntimeIdentifier)</SupportedRuntimeIdentifiers>
+
+		<!-- Playwright provides binaries for Windows (x86 and x64), macOS (x64) and Linux (x64, non musl). We can't use it on other architectures. -->
+		<IsPlaywrightAvailable Condition="'$(TargetOsName)' == 'linux-musl' OR ('$(TargetArchitecture)' != 'x86' AND '$(TargetArchitecture)' != 'x64')">false</IsPlaywrightAvailable>
+		<IsPlaywrightAvailable Condition="'$(IsPlaywrightAvailable)' == ''">true</IsPlaywrightAvailable>
+
+		<!-- Make error messages clickable in VS Code's console -->
+		<GenerateFullPaths Condition="'$(VSCODE_CWD)' != '' OR '$(TERM_PROGRAM)' == 'vscode'">true</GenerateFullPaths>
+
+		<!-- Fixes a common error in targets implementing a NoBuild mode. -->
+		<BuildProjectReferences Condition=" '$(NoBuild)' == 'true' ">false</BuildProjectReferences>
+	</PropertyGroup>
+	
+
+</Project>

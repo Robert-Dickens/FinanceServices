@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<OutputType>Exe</OutputType>
+		<AseemblyName>DbMigrator</AseemblyName>
+	</PropertyGroup>
+	
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Hosting" />
+		
+		<PackageReference Include="Serilog.AspNetCore" />
+		<PackageReference Include="Serilog.Sinks.Async" />
+		<PackageReference Include="Serilog.Sinks.Console" />
+		<PackageReference Include="Serilog.Extensions.Logging" />
+		<PackageReference Include="Serilog.Sinks.OpenTelemetry" />
+
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools">
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+			<PrivateAssets>compile; contentFiles; build; buildMultitargeting; buildTransitive; analyzers; native</PrivateAssets>
+		</PackageReference>
+		<PackageReference Include="Aspire.Microsoft.EntityFrameworkCore.SqlServer" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\shared\Shared.Hosting\Shared.Hosting.csproj" />
+		<ProjectReference Include="..\..\services\Administration\src\Application.Abstractions\AdministrationService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\services\Identity\src\Application.Abstractions\IdentityService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\services\Saas\src\Application.Abstractions\SaasService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\..\services\FinanceServices\src\Application.Abstractions\FinanceServicesService.Application.Abstractions.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\services\Identity\src\Domain.Context.PostgreSql\IdentityService.Domain.Context.PostgreSql.csproj" />
+		<ProjectReference Include="..\..\services\FinanceServices\src\Domain.Context.PostgreSql\FinanceServicesService.Domain.Context.PostgreSql.csproj" />
+		<ProjectReference Include="..\..\services\Saas\src\Domain.Context.PostgreSql\SaasService.Domain.Context.PostgreSql.csproj" />
+		<ProjectReference Include="..\..\services\Administration\src\Domain.Context.PostgreSql\AdministrationService.Domain.Context.PostgreSql.csproj" />
+	</ItemGroup>
+
+	
+	<ItemGroup>
+		<Content Include="..\..\apps\TrustedPlatform\AuthServer.Web\appsettings.OpenIdDefaults.json" Link="appsettings.OpenIdDefaults.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<None Remove="appsettings.json" />
+		<Content Include="appsettings.json">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<None Remove="appsettings.secrets.json" />
+		<Content Include="appsettings.secrets.json">
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+
+</Project>

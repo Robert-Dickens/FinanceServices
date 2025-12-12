@@ -1,0 +1,5 @@
+@using ByteLabs.Foundations.AspNetCore.Mvc.UI.Theming
+@inject IThemeManager ThemeManager
+@{
+    Layout = ThemeManager.CurrentTheme.GetPublicLayout();
+}

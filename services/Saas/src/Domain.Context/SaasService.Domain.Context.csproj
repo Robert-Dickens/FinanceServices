@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+        <RootNamespace>$(RootNamespace).Domain</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.Foundations.DataFactory.Data.PlatformMigrator"  />
+		<PackageReference Include="ByteLabs.PlatformServices.SaaS.Domain.Context" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Domain\SaasService.Domain.csproj" />
+	</ItemGroup>
+
+
+</Project>

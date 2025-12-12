@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(DefaultNetCoreTargetFramework)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Identity.Application" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Public.Application" />
+		<PackageReference Include="ByteLabs.PlatformServices.Account.Admin.Application" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ByteLabs.PlatformServices.Security.IdentityServer.Application" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<ProjectReference Include="..\Application.Abstractions\IdentityService.Application.Abstractions.csproj" />
+		<ProjectReference Include="..\Domain\IdentityService.Domain.csproj" />
+	</ItemGroup>
+
+</Project>

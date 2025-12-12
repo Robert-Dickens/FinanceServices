@@ -1,0 +1,6 @@
+config:
+    elasticsearchUrl: http://financeservices-st-elasticsearch:9200
+
+ingress:
+    host: financeservices-st-kibana
+    tlsSecret: financeservices-tls

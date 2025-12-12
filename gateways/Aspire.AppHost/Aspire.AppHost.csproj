@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>$(CurrentTargetFramework)</TargetFramework>
+		<IsPackable>false</IsPackable>
+		<IsAspireHost>true</IsAspireHost>
+		<UserSecretsId>178dcdbd-7f48-421d-9866-875294ab41f1</UserSecretsId>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Aspire.Hosting.AppHost" />
+		<PackageReference Include="Aspire.Hosting.Redis" />
+		<PackageReference Include="Aspire.Hosting.SqlServer" />
+		<PackageReference Include="Aspire.Hosting.RabbitMQ" />
+		<PackageReference Include="Aspire.Hosting.PostgreSQL" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\..\apps\ManagementPortal\Blazor\WebApp\ManagementPortal.Blazor.csproj" />
+	  <ProjectReference Include="..\..\apps\ManagementPortal\Web\ManagementPortal.Web.csproj" />
+	  <ProjectReference Include="..\..\apps\PublicFacing\Web\Public.Web.csproj" />
+	  <ProjectReference Include="..\..\apps\TrustedPlatform\AuthServer.Web\AuthServer.Web.csproj" />
+	  <ProjectReference Include="..\..\hosts\Administration\HttpApi.Host\AdministrationService.HttpApi.Host.csproj" />
+	  <ProjectReference Include="..\..\hosts\Identity\HttpApi.Host\IdentityService.HttpApi.Host.csproj" />
+	  <ProjectReference Include="..\..\hosts\FinanceServices\HttpApi.Host\FinanceServicesService.HttpApi.Host.csproj" />
+	  <ProjectReference Include="..\..\hosts\Saas\HttpApi.Host\SaasService.HttpApi.Host.csproj" />
+	  <ProjectReference Include="..\..\shared\Shared.Settings\FinanceServices.Shared.Settings.csproj" IsAspireProjectResource="false" />
+	  <ProjectReference Include="..\..\tools\DbMigrator\DbMigrator.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Yarp\WebGateway\WebGateway.Yarp.csproj" />
+	</ItemGroup>
+	
+	
+</Project>

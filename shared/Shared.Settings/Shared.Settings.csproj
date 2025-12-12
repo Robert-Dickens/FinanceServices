@@ -1,0 +1,10 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>$(ClientCompatibility)</TargetFrameworks>
+		<IsPackable>false</IsPackable>
+		<IsAspireSharedProject>true</IsAspireSharedProject>
+		<ProductFeatureGroup>Shared</ProductFeatureGroup>
+	</PropertyGroup>
+
+</Project>
